@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>청소공작소 로고 디자인</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        .logo-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 20px;
+            text-align: center;
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .usage {
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+        .color-palette {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        .color-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>청소공작소 로고 디자인 제안</h1>
+    
+    <div class="logo-grid">
+        <!-- 로고 디자인 1: 플라스크 + 청소도구 -->
+        <div class="logo-container">
+            <h2>디자인 1: 연구소 컨셉</h2>
+            <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- 플라스크 -->
+                <path d="M100 40 L80 80 L70 120 L70 140 C70 150 80 160 100 160 C120 160 130 150 130 140 L130 120 L120 80 L100 40 Z" 
+                      fill="none" stroke="#1E40AF" stroke-width="3"/>
+                <!-- 플라스크 입구 -->
+                <rect x="90" y="30" width="20" height="15" fill="#1E40AF" rx="2"/>
+                <!-- 액체 -->
+                <path d="M85 100 L80 120 L80 140 C80 145 85 150 100 150 C115 150 120 145 120 140 L120 120 L115 100 Z" 
+                      fill="#10B981" opacity="0.3"/>
+                <!-- 방울 -->
+                <circle cx="95" cy="110" r="3" fill="#10B981"/>
+                <circle cx="105" cy="120" r="2" fill="#10B981"/>
+                <circle cx="100" cy="130" r="2.5" fill="#10B981"/>
+                
+                <!-- 브러시 -->
+                <g transform="rotate(45 100 100)">
+                    <rect x="125" y="95" width="30" height="10" fill="#FCD34D" rx="5"/>
+                    <rect x="120" y="93" width="8" height="14" fill="#F59E0B" rx="2"/>
+                </g>
+                
+                <!-- 텍스트 -->
+                <text x="100" y="180" text-anchor="middle" font-family="Noto Sans KR" font-weight="700" font-size="24" fill="#1E40AF">청소공작소</text>
+            </svg>
+            <p class="usage">메인 로고 - 전문성과 연구 이미지 강조</p>
+        </div>
+
+        <!-- 로고 디자인 2: 기어 + 물방울 -->
+        <div class="logo-container">
+            <h2>디자인 2: 기술 컨셉</h2>
+            <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- 기어 -->
+                <g transform="translate(100,100)">
+                    <path d="M 0,-40 L 10,-38 L 12,-28 L 20,-25 L 25,-32 L 35,-25 L 32,-15 L 28,-12 L 38,-10 L 40,0 L 38,10 L 28,12 L 32,15 L 35,25 L 25,32 L 20,25 L 12,28 L 10,38 L 0,40 L -10,38 L -12,28 L -20,25 L -25,32 L -35,25 L -32,15 L -28,12 L -38,10 L -40,0 L -38,-10 L -28,-12 L -32,-15 L -35,-25 L -25,-32 L -20,-25 L -12,-28 L -10,-38 Z" 
+                          fill="#6366F1" opacity="0.2" stroke="#6366F1" stroke-width="2"/>
+                    
+                    <!-- 중앙 물방울 -->
+                    <path d="M 0,-15 C -8,-15 -15,-8 -15,0 C -15,12 0,20 0,20 C 0,20 15,12 15,0 C 15,-8 8,-15 0,-15 Z" 
+                          fill="#3B82F6"/>
+                    <ellipse cx="-5" cy="-5" rx="3" ry="4" fill="white" opacity="0.7"/>
+                </g>
+                
+                <!-- 텍스트 -->
+                <text x="100" y="160" text-anchor="middle" font-family="Noto Sans KR" font-weight="300" font-size="20" fill="#6366F1">CLEANING</text>
+                <text x="100" y="180" text-anchor="middle" font-family="Noto Sans KR" font-weight="700" font-size="24" fill="#1E40AF">청소공작소</text>
+            </svg>
+            <p class="usage">앱 아이콘 - 기술과 청결의 조화</p>
+        </div>
+
+        <!-- 로고 디자인 3: 미니멀 컨셉 -->
+        <div class="logo-container">
+            <h2>디자인 3: 미니멀 컨셉</h2>
+            <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- 육각형 배경 -->
+                <polygon points="100,40 140,60 140,100 100,120 60,100 60,60" 
+                         fill="none" stroke="#1E40AF" stroke-width="3"/>
+                
+                <!-- C 문자 (Cleaning) -->
+                <path d="M 85,70 Q 70,80 70,90 Q 70,100 85,110" 
+                      fill="none" stroke="#10B981" stroke-width="4" stroke-linecap="round"/>
+                
+                <!-- 공작소 도구 아이콘 -->
+                <g transform="translate(110,80)">
+                    <rect x="-2" y="0" width="4" height="20" fill="#1E40AF"/>
+                    <rect x="-8" y="18" width="16" height="4" fill="#1E40AF" rx="2"/>
+                    <circle cx="0" cy="8" r="6" fill="none" stroke="#1E40AF" stroke-width="2"/>
+                </g>
+                
+                <!-- 텍스트 -->
+                <text x="100" y="160" text-anchor="middle" font-family="Noto Sans KR" font-weight="700" font-size="18" fill="#1E40AF">청소공작소</text>
+                <text x="100" y="175" text-anchor="middle" font-family="Noto Sans KR" font-weight="300" font-size="12" fill="#6B7280">Cleaning Laboratory</text>
+            </svg>
+            <p class="usage">명함/서류 - 심플하고 전문적인 이미지</p>
+        </div>
+
+        <!-- 로고 디자인 4: 원형 뱃지 -->
+        <div class="logo-container">
+            <h2>디자인 4: 뱃지 스타일</h2>
+            <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- 외곽 원 -->
+                <circle cx="100" cy="100" r="70" fill="#1E40AF"/>
+                <circle cx="100" cy="100" r="60" fill="white"/>
+                
+                <!-- 상단 텍스트 (원형) -->
+                <path id="textPath" d="M 100,40 A 60,60 0 0,1 160,100" fill="none"/>
+                <text font-family="Noto Sans KR" font-size="14" font-weight="500" fill="#1E40AF">
+                    <textPath href="#textPath" startOffset="20%">SINCE 2024</textPath>
+                </text>
+                
+                <!-- 중앙 아이콘 -->
+                <g transform="translate(100,100)">
+                    <!-- 스프레이 병 -->
+                    <rect x="-10" y="-5" width="20" height="25" fill="#3B82F6" rx="3"/>
+                    <rect x="-6" y="-10" width="12" height="8" fill="#1E40AF" rx="2"/>
+                    <circle cx="0" cy="-12" r="2" fill="#10B981"/>
+                    
+                    <!-- 스프레이 효과 -->
+                    <circle cx="15" cy="-10" r="1.5" fill="#10B981" opacity="0.6"/>
+                    <circle cx="18" cy="-8" r="1" fill="#10B981" opacity="0.4"/>
+                    <circle cx="20" cy="-12" r="1" fill="#10B981" opacity="0.3"/>
+                </g>
+                
+                <!-- 하단 텍스트 -->
+                <text x="100" y="135" text-anchor="middle" font-family="Noto Sans KR" font-weight="700" font-size="16" fill="#1E40AF">청소공작소</text>
+                
+                <!-- 별 장식 -->
+                <text x="70" y="100" font-size="10" fill="#FCD34D">★</text>
+                <text x="130" y="100" font-size="10" fill="#FCD34D">★</text>
+            </svg>
+            <p class="usage">유니폼/스티커 - 신뢰감 있는 인증 마크</p>
+        </div>
+    </div>
+
+    <!-- 색상 팔레트 -->
+    <div class="logo-container" style="margin-top: 40px; width: 100%; max-width: 800px;">
+        <h2>브랜드 컬러 팔레트</h2>
+        <div class="color-palette">
+            <div class="color-box" style="background: #1E40AF;">#1E40AF<br>메인</div>
+            <div class="color-box" style="background: #10B981;">#10B981<br>포인트</div>
+            <div class="color-box" style="background: #3B82F6;">#3B82F6<br>서브</div>
+            <div class="color-box" style="background: #FCD34D; color: #333;">#FCD34D<br>강조</div>
+            <div class="color-box" style="background: #6366F1;">#6366F1<br>보조</div>
+        </div>
+        
+        <h3 style="margin-top: 40px;">서비스별 아이콘 컬러</h3>
+        <div style="display: flex; gap: 20px; justify-content: center; margin-top: 20px;">
+            <div style="text-align: center;">
+                <div style="width: 60px; height: 60px; background: #3B82F6; border-radius: 50%; margin: 0 auto;"></div>
+                <p style="margin-top: 10px; font-size: 14px;">입주청소</p>
+            </div>
+            <div style="text-align: center;">
+                <div style="width: 60px; height: 60px; background: #10B981; border-radius: 50%; margin: 0 auto;"></div>
+                <p style="margin-top: 10px; font-size: 14px;">에어컨청소</p>
+            </div>
+            <div style="text-align: center;">
+                <div style="width: 60px; height: 60px; background: #6366F1; border-radius: 50%; margin: 0 auto;"></div>
+                <p style="margin-top: 10px; font-size: 14px;">쇼파/침구</p>
+            </div>
+            <div style="text-align: center;">
+                <div style="width: 60px; height: 60px; background: #FCD34D; border-radius: 50%; margin: 0 auto;"></div>
+                <p style="margin-top: 10px; font-size: 14px;">유리창청소</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

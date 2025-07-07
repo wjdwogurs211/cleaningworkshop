@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>청소공작소 - 청소의 과학, 깨끗함의 예술</title>
+    <meta name="description" content="청소공작소는 과학적인 접근과 체계적인 방법으로 완벽한 청소 서비스를 제공합니다.">
+    <meta name="keywords" content="청소공작소,입주청소,에어컨청소,쇼파청소,침구청소,유리창청소,전문청소">
+    
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    
+    <!-- PWA 설정 -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="청소공작소">
+    <link rel="apple-touch-icon" href="/images/icon-152x152.png">
+    <meta name="msapplication-TileImage" content="/images/icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#1e40af">
+    
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 스타일 -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/hero-banner.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+    
+    <!-- SEO 최적화 -->
+    <meta property="og:title" content="청소공작소 - 청소의 과학, 깨끗함의 예술">
+    <meta property="og:description" content="체계적이고 과학적인 청소 서비스의 새로운 기준">
+    <meta property="og:image" content="images/og-image.png">
+    <meta property="og:url" content="https://www.cleaningworkshop.co.kr">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ko_KR">
+    
+    <!-- Twitter 카드 -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="청소공작소 - 첫 이용 30% 할인!">
+    <meta name="twitter:description" content="전문 청소 서비스를 특별한 가격에 만나보세요">
+    <meta name="twitter:image" content="images/twitter-card.png">
+    
+    <!-- 추가 SEO -->
+    <link rel="canonical" href="https://www.cleaningworkshop.co.kr">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="청소공작소">
+    
+    <!-- 구조화된 데이터 -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "@id": "https://www.cleaningworkshop.co.kr",
+        "name": "청소공작소",
+        "description": "전문 청소 서비스 - 입주청소, 에어컨청소, 쇼파/침구청소, 유리창청소",
+        "image": "logo.svg",
+        "telephone": "1588-0000",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Seoul",
+            "addressCountry": "KR"
+        },
+        "priceRange": "₩₩",
+        "servesCuisine": "Korean",
+        "url": "https://www.cleaningworkshop.co.kr",
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "청소 서비스",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "name": "입주청소",
+                    "description": "새 집처럼 깨끗한 입주청소"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "에어컨청소",
+                    "description": "전문 장비로 진행하는 에어컨 분해청소"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "쇼파/침구청소",
+                    "description": "집먼지 진드기 제거 전문 청소"
+                },
+                {
+                    "@type": "Offer",
+                    "name": "유리창청소",
+                    "description": "투명하고 깨끗한 유리창 청소"
+                }
+            ]
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.svg" alt="청소공작소" class="logo">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#services" class="nav-link">서비스</a></li>
+                <li><a href="our-story.html" class="nav-link">우리의 이야기</a></li>
+                <li><a href="reviews.html" class="nav-link">고객후기</a></li>
+                <li><a href="booking.html" class="nav-link">예약하기</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- 히어로 배너 섹션 -->
+    <section class="hero-banner">
+        <div class="banner-slider">
+            <!-- 슬라이드 1: 에어컨 청소 -->
+            <div class="banner-slide active">
+                <img src="images/banner1.png" alt="에어컨 청소 후 시원한 바람을 즐기는 가족" class="banner-image">
+                <div class="banner-overlay"></div>
+                <div class="banner-content">
+                    <h1 class="banner-title">
+                        시원한 바람에<br>
+                        건강을 더하다
+                    </h1>
+                    <p class="banner-subtitle">
+                        전문가의 에어컨 분해청소로<br>
+                        깨끗한 공기와 함께 행복한 일상을
+                    </p>
+                    <div class="banner-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>99.9% 세균 제거</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>전문가 방문</span>
+                        </div>
+                    </div>
+                    <div class="banner-cta">
+                        <button class="cta-primary" onclick="location.href='booking.html?service=ac'">에어컨 청소 예약</button>
+                        <button class="cta-secondary" onclick="location.href='#services'">서비스 보기</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 슬라이드 2: 입주청소 -->
+            <div class="banner-slide">
+                <img src="images/banner2.png" alt="입주청소로 깨끗한 새 집에서 행복한 가족" class="banner-image">
+                <div class="banner-overlay"></div>
+                <div class="banner-content">
+                    <h1 class="banner-title">
+                        새로운 시작,<br>
+                        깨끗함과 함께
+                    </h1>
+                    <p class="banner-subtitle">
+                        입주청소 전문가가 만드는<br>
+                        완벽하게 깨끗한 우리 집
+                    </p>
+                    <div class="banner-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>구석구석 완벽청소</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>친환경 세제</span>
+                        </div>
+                    </div>
+                    <div class="banner-cta">
+                        <button class="cta-primary" onclick="location.href='booking.html?service=move-in'">입주청소 예약</button>
+                        <button class="cta-secondary" onclick="location.href='#pricing'">요금 확인</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 슬라이드 3: 쇼파/침구청소 -->
+            <div class="banner-slide">
+                <img src="images/banner3.png" alt="깨끗한 거실에서 편안한 시간을 보내는 가족" class="banner-image">
+                <div class="banner-overlay"></div>
+                <div class="banner-content">
+                    <h1 class="banner-title">
+                        깨끗한 공간,<br>
+                        행복한 일상
+                    </h1>
+                    <p class="banner-subtitle">
+                        청소공작소가 만드는<br>
+                        과학적이고 체계적인 청결함
+                    </p>
+                    <div class="banner-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>진드기 완벽 제거</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>알레르기 예방</span>
+                        </div>
+                    </div>
+                    <div class="banner-cta">
+                        <button class="cta-primary" onclick="location.href='booking.html'">지금 예약하기</button>
+                        <button class="cta-secondary" onclick="location.href='reviews.html'">고객후기 보기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 슬라이더 인디케이터 -->
+        <div class="banner-indicators">
+            <span class="indicator active" onclick="changeSlide(0)"></span>
+            <span class="indicator" onclick="changeSlide(1)"></span>
+            <span class="indicator" onclick="changeSlide(2)"></span>
+        </div>
+    </section>
+
+    <!-- 서비스 섹션 -->
+    <section id="services" class="services">
+        <div class="section-header">
+            <h2 class="section-title">전문 청소 서비스</h2>
+            <p class="section-desc">
+                각 분야별 전문가들이 최신 장비와 친환경 세제로<br>
+                완벽한 청소 서비스를 제공합니다
+            </p>
+        </div>
+        <div class="services-grid">
+            <!-- 입주청소 -->
+            <div class="service-card">
+                <div class="service-icon">🏠</div>
+                <h3 class="service-title">입주청소</h3>
+                <p class="service-desc">
+                    새 집처럼 깨끗하게!<br>
+                    구석구석 완벽한 입주청소
+                </p>
+                <p class="service-price">30평 기준 35만원~</p>
+                <a href="booking.html?service=move-in" class="btn btn-secondary">예약하기</a>
+            </div>
+            
+            <!-- 에어컨청소 -->
+            <div class="service-card">
+                <div class="service-icon">❄️</div>
+                <h3 class="service-title">에어컨청소</h3>
+                <p class="service-desc">
+                    전문 장비로 분해청소<br>
+                    깨끗한 공기, 건강한 생활
+                </p>
+                <p class="service-price">벽걸이 5만원~</p>
+                <a href="booking.html?service=ac" class="btn btn-secondary">예약하기</a>
+            </div>
+            
+            <!-- 쇼파/침구청소 -->
+            <div class="service-card">
+                <div class="service-icon">🛋️</div>
+                <h3 class="service-title">쇼파/침구청소</h3>
+                <p class="service-desc">
+                    집먼지 진드기 완벽 제거<br>
+                    알레르기 걱정 없는 청결함
+                </p>
+                <p class="service-price">3인 쇼파 8만원~</p>
+                <a href="booking.html?service=sofa" class="btn btn-secondary">예약하기</a>
+            </div>
+            
+            <!-- 유리창청소 -->
+            <div class="service-card">
+                <div class="service-icon">🪟</div>
+                <h3 class="service-title">유리창청소</h3>
+                <p class="service-desc">
+                    투명하고 깨끗한 전망<br>
+                    전문가의 손길로 완성
+                </p>
+                <p class="service-price">30평 기준 10만원~</p>
+                <a href="booking.html?service=window" class="btn btn-secondary">예약하기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 우리의 이야기 섹션 -->
+    <section class="story-section">
+        <div class="story-container">
+            <div class="story-content">
+                <p class="story-label">OUR STORY</p>
+                <h2 class="story-heading">
+                    모든 시작은 <span class="highlight">가족</span>이었습니다
+                </h2>
+                <p class="story-description">
+                    갓 태어난 아이를 위해 시작된 3년간의 연구.<br>
+                    수백 가지 세제를 분석하고, 수천 번의 실험을 거쳐<br>
+                    마침내 찾아낸 안전하면서도 효과적인 청소의 해답.
+                </p>
+                <div class="story-stats">
+                    <div class="story-stat">
+                        <span class="stat-value">347</span>
+                        <span class="stat-desc">분석한 세제</span>
+                    </div>
+                    <div class="story-stat">
+                        <span class="stat-value">2,156</span>
+                        <span class="stat-desc">실험 횟수</span>
+                    </div>
+                    <div class="story-stat">
+                        <span class="stat-value">100,000+</span>
+                        <span class="stat-desc">신뢰하는 가정</span>
+                    </div>
+                </div>
+                <a href="our-story.html" class="story-link">
+                    우리의 전체 이야기 보기 →
+                </a>
+            </div>
+            <div class="story-visual">
+                <div class="story-image-container">
+                    <img src="images/banner3.png" alt="청소공작소 연구" class="story-image">
+                    <div class="story-overlay"></div>
+                </div>
+                <div class="story-quote">
+                    <blockquote>
+                        "우리 아이가 숨 쉴 공간인데... 정말 안전한 걸까?"
+                    </blockquote>
+                    <p class="quote-author">- 청소공작소 창립자</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 특징 섹션 -->
+    <section id="features" class="features">
+        <div class="section-header">
+            <h2 class="section-title">청소공작소만의 특별함</h2>
+            <p class="section-desc">
+                과학적이고 체계적인 접근으로<br>
+                최상의 청소 품질을 보장합니다
+            </p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🔬</div>
+                <div class="feature-content">
+                    <h3>과학적 청소법</h3>
+                    <p>오염 유형별 최적화된 세제와 도구를 사용하여 효과적으로 제거합니다</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🌿</div>
+                <div class="feature-content">
+                    <h3>친환경 제품</h3>
+                    <p>인체에 무해한 친환경 인증 세제만을 사용하여 가족 건강을 지킵니다</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">👨‍🔬</div>
+                <div class="feature-content">
+                    <h3>전문가 팀</h3>
+                    <p>체계적인 교육을 이수한 청소 전문가들이 책임지고 서비스합니다</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📊</div>
+                <div class="feature-content">
+                    <h3>품질 보증</h3>
+                    <p>표준화된 체크리스트로 꼼꼼히 확인하고 만족도 100%를 추구합니다</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-content">
+                    <h3>신속한 서비스</h3>
+                    <p>효율적인 프로세스로 시간을 절약하면서도 완벽한 결과를 제공합니다</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">💎</div>
+                <div class="feature-content">
+                    <h3>프리미엄 장비</h3>
+                    <p>최신 전문 장비를 사용하여 일반 청소로는 불가능한 깊은 청결을 실현합니다</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 프로세스 섹션 -->
+    <section id="process" class="services" style="background: white;">
+        <div class="section-header">
+            <h2 class="section-title">청소공작소 프로세스</h2>
+            <p class="section-desc">
+                체계적인 5단계 프로세스로<br>
+                완벽한 청소를 보장합니다
+            </p>
+        </div>
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>상담 및 견적</h3>
+                <p>무료 방문 상담으로 정확한 견적 제공</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>일정 예약</h3>
+                <p>고객님이 원하는 시간에 맞춰 예약</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>전문가 방문</h3>
+                <p>전문 장비와 친환경 세제 준비 완료</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>청소 진행</h3>
+                <p>체크리스트에 따른 꼼꼼한 청소</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <h3>검수 및 완료</h3>
+                <p>고객님과 함께 최종 확인 후 완료</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA 섹션 -->
+    <section class="cta">
+        <h2 class="cta-title">지금 바로 깨끗함을 경험하세요</h2>
+        <p class="cta-desc">
+            전문가의 손길로 새롭게 태어나는 우리집<br>
+            청소공작소가 함께합니다
+        </p>
+        <a href="tel:1588-0000" class="btn">📞 1588-0000 전화 상담</a>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="logo.svg" alt="청소공작소" style="height: 50px; margin-bottom: 20px;">
+                <p>청소의 과학, 깨끗함의 예술</p>
+                <p>체계적이고 전문적인 청소 서비스</p>
+            </div>
+            <div class="footer-section">
+                <h3>서비스</h3>
+                <p><a href="move-in-cleaning.html">입주청소</a></p>
+                <p><a href="ac-cleaning.html">에어컨청소</a></p>
+                <p><a href="sofa-cleaning.html">쇼파/침구청소</a></p>
+                <p><a href="window-cleaning.html">유리창청소</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>고객센터</h3>
+                <p>📞 1588-0000</p>
+                <p>평일 09:00 - 18:00</p>
+                <p>토요일 09:00 - 13:00</p>
+                <p>일요일/공휴일 휴무</p>
+            </div>
+            <div class="footer-section">
+                <h3>회사정보</h3>
+                <p>청소공작소</p>
+                <p>사업자등록번호: 123-45-67890</p>
+                <p>대표: 홍길동</p>
+                <p>서울특별시 강남구 청소로 123</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 청소공작소. All rights reserved. | <a href="#privacy" style="color: inherit;">개인정보처리방침</a> | <a href="#terms" style="color: inherit;">이용약관</a></p>
+        </div>
+    </footer>
+
+    <!-- 모바일 메뉴 스크립트 -->
+    <script>
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // 스크롤 애니메이션
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // 애니메이션 적용
+        document.querySelectorAll('.service-card, .feature-item, .process-step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+    
+    <!-- 히어로 배너 스크립트 -->
+    <script src="js/hero-banner.js"></script>
+
+    <!-- 채팅 위젯 -->
+    <div class="chat-widget">
+        <button class="chat-button" onclick="toggleChat()">
+            💬 상담하기
+        </button>
+        <div class="chat-box" id="chat-box">
+            <div class="chat-header">
+                <h3>청소공작소 상담</h3>
+                <button onclick="toggleChat()">✕</button>
+            </div>
+            <div class="chat-messages">
+                <div class="message bot">
+                    안녕하세요! 청소공작소입니다.<br>
+                    어떤 서비스가 필요하신가요?
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="메시지를 입력하세요...">
+                <button>전송</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* 프로세스 타임라인 스타일 */
+        .process-timeline {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            padding: 0 20px;
+        }
+        
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: var(--border-gray);
+            z-index: 0;
+        }
+        
+        .process-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            flex: 1;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        .process-step h3 {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .process-step p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* 스토리 섹션 스타일 */
+        .story-section {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .story-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(30, 64, 175, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .story-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .story-label {
+            color: var(--accent-green);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .story-heading {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+        
+        .story-heading .highlight {
+            color: var(--primary-blue);
+            position: relative;
+        }
+        
+        .story-heading .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-green);
+        }
+        
+        .story-description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+        
+        .story-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .story-stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+        
+        .stat-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .story-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-blue);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .story-link:hover {
+            transform: translateX(5px);
+        }
+        
+        .story-visual {
+            position: relative;
+        }
+        
+        .story-image-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .story-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .story-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+            opacity: 0.5;
+        }
+        
+        .story-quote {
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+        }
+        
+        .story-quote blockquote {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--primary-blue);
+            margin: 0 0 10px 0;
+        }
+        
+        .quote-author {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: right;
+        }
+        
+        @media (max-width: 768px) {
+            .story-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .story-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            
+            .story-visual {
+                margin-top: 40px;
+            }
+            
+            .story-quote {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                margin-top: 20px;
+            }
+        }
+        
+        /* 채팅 위젯 스타일 */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .chat-button {
+            background: var(--accent-green);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s;
+        }
+        
+        .chat-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .chat-box {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-xl);
+            display: none;
+            flex-direction: column;
+        }
+        
+        .chat-box.active {
+            display: flex;
+        }
+        
+        .chat-header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 20px;
+            border-radius: 16px 16px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-header button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            max-width: 80%;
+        }
+        
+        .message.bot {
+            background: var(--bg-light);
+            margin-right: auto;
+        }
+        
+        .chat-input {
+            padding: 20px;
+            border-top: 1px solid var(--border-gray);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .chat-input button {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        /* 반응형 수정 */
+        @media (max-width: 768px) {
+            .process-timeline {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .process-timeline::before {
+                display: none;
+            }
+            
+            .chat-box {
+                width: 90vw;
+                right: 5vw;
+            }
+        }
+    </style>
+    
+    <!-- AI 챗봇 스크립트 -->
+    <script src="js/chatbot.js"></script>
+    
+    
+    <!-- API 연동 -->
+    <script src="../js/api.js"></script>
+    <script src="../js/payment.js"></script>
+    
+    <script>
+        function toggleChat() {
+            document.getElementById('chat-box').classList.toggle('active');
+        }
+    </script>
+    <!-- PWA Service Worker 등록 -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker 등록 성공:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker 등록 실패:', error);
+                    });
+            });
+        }
+
+        // PWA 설치 프롬프트
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // 설치 버튼 표시 (예: 헤더에 추가)
+            const installButton = document.createElement('button');
+            installButton.textContent = '홈 화면에 추가';
+            installButton.className = 'btn btn-secondary';
+            installButton.style.marginLeft = '10px';
+            installButton.onclick = async () => {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    console.log('사용자가 PWA 설치를 수락했습니다');
+                }
+                deferredPrompt = null;
+                installButton.remove();
+            };
+            
+            // 네비게이션에 버튼 추가
+            const nav = document.querySelector('.nav-menu');
+            if (nav && !document.querySelector('#installButton')) {
+                installButton.id = 'installButton';
+                nav.appendChild(installButton);
+            }
+        });
+    </script>
+</body>
+</html>

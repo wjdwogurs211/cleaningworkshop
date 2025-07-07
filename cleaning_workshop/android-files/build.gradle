@@ -1,0 +1,38 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 33
+    
+    defaultConfig {
+        applicationId "kr.co.cleaningworkshop.app"
+        minSdkVersion 19
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0.0"
+        
+        manifestPlaceholders = [
+            hostName: "cleaningworkshop.co.kr",
+            defaultUrl: "https://cleaningworkshop.co.kr",
+            launcherName: "청소공작소"
+        ]
+        
+        resValue "color", "colorPrimary", "#1e40af"
+    }
+    
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:2.5.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+}

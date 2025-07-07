@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약 완료 - 청소공작소</title>
+    <meta name="description" content="청소공작소 예약이 완료되었습니다. 곧 담당자가 연락드리겠습니다.">
+    
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 스타일 -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .complete-container {
+            max-width: 600px;
+            margin: 80px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 3rem;
+            color: white;
+            animation: scaleIn 0.5s ease;
+        }
+        
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        
+        .complete-title {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+        
+        .complete-message {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        
+        .booking-info {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+        
+        .booking-number {
+            background: white;
+            border: 2px solid var(--primary-blue);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .booking-number label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+        
+        .booking-number .number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            letter-spacing: 2px;
+        }
+        
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-gray);
+        }
+        
+        .info-item:last-child {
+            border-bottom: none;
+        }
+        
+        .info-label {
+            color: var(--text-secondary);
+        }
+        
+        .info-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .next-steps {
+            background: #FEF3C7;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .next-steps h3 {
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            color: #92400E;
+        }
+        
+        .step-list {
+            text-align: left;
+            list-style: none;
+            padding: 0;
+        }
+        
+        .step-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #92400E;
+        }
+        
+        .step-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .action-buttons .btn {
+            min-width: 150px;
+        }
+        
+        @media (max-width: 768px) {
+            .complete-title {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .action-buttons .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.svg" alt="청소공작소" class="logo">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">홈</a></li>
+                <li><a href="#services" class="nav-link">서비스</a></li>
+                <li><a href="#features" class="nav-link">특징</a></li>
+                <li><a href="#pricing" class="nav-link">요금안내</a></li>
+                <li><a href="#contact" class="nav-link">문의하기</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- 완료 컨테이너 -->
+    <div class="complete-container">
+        <div class="success-icon">✓</div>
+        
+        <h1 class="complete-title">예약이 완료되었습니다!</h1>
+        
+        <p class="complete-message">
+            청소공작소를 이용해 주셔서 감사합니다.<br>
+            곧 담당자가 연락드려 상세 내용을 확인해 드리겠습니다.
+        </p>
+        
+        <div class="booking-info">
+            <div class="booking-number">
+                <label>예약번호</label>
+                <div class="number" id="bookingNumber">CW12345678</div>
+            </div>
+            
+            <div id="bookingDetails">
+                <!-- 동적으로 생성될 예약 정보 -->
+            </div>
+        </div>
+        
+        <div class="next-steps">
+            <h3>다음 단계 안내</h3>
+            <ul class="step-list">
+                <li>영업일 기준 24시간 이내에 담당자가 연락드립니다</li>
+                <li>서비스 일정과 상세 사항을 최종 확인합니다</li>
+                <li>필요시 현장 사전 방문을 진행합니다</li>
+                <li>약속된 일시에 전문가가 방문하여 서비스를 제공합니다</li>
+                <li>서비스 완료 후 <a href="review.html" style="color: var(--primary-blue); text-decoration: underline;">리뷰 작성</a>시 할인 쿠폰을 드립니다</li>
+            </ul>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="index.html" class="btn btn-secondary">홈으로 가기</a>
+            <a href="#" class="btn btn-primary" onclick="window.print()">예약 내역 인쇄</a>
+        </div>
+        
+        <p style="margin-top: 40px; color: var(--text-secondary);">
+            문의사항이 있으시면 <strong>1588-0000</strong>으로 연락주세요.
+        </p>
+    </div>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="logo.svg" alt="청소공작소" style="height: 50px; margin-bottom: 20px;">
+                <p>청소의 과학, 깨끗함의 예술</p>
+            </div>
+            <div class="footer-section">
+                <h3>고객센터</h3>
+                <p>📞 1588-0000</p>
+                <p>평일 09:00 - 18:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 청소공작소. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // URL 파라미터에서 예약번호 가져오기
+        const urlParams = new URLSearchParams(window.location.search);
+        const bookingNumber = urlParams.get('booking');
+        
+        if (bookingNumber) {
+            document.getElementById('bookingNumber').textContent = bookingNumber;
+        }
+        
+        // 로컬 스토리지에서 예약 정보 가져오기
+        const bookingData = JSON.parse(localStorage.getItem('lastBooking'));
+        
+        if (bookingData) {
+            const serviceNames = {
+                'move-in': '입주청소',
+                'ac': '에어컨청소',
+                'sofa': '쇼파/침구청소',
+                'window': '유리창청소'
+            };
+            
+            let detailsHTML = `
+                <div class="info-item">
+                    <span class="info-label">서비스</span>
+                    <span class="info-value">${serviceNames[bookingData.service]}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">예약일시</span>
+                    <span class="info-value">${bookingData.date} ${bookingData.time}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">고객명</span>
+                    <span class="info-value">${bookingData.customerName}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">연락처</span>
+                    <span class="info-value">${bookingData.customerPhone}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">주소</span>
+                    <span class="info-value">${bookingData.address}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">예상 요금</span>
+                    <span class="info-value">${(bookingData.totalPrice || 0).toLocaleString()}원</span>
+                </div>
+            `;
+            
+            document.getElementById('bookingDetails').innerHTML = detailsHTML;
+        }
+        
+        // 모바일 메뉴
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

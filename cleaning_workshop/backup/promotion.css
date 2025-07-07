@@ -1,0 +1,427 @@
+/* 프로모션 & 마케팅 스타일 */
+
+/* 프로모션 팝업 */
+.promotion-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.promotion-popup.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.promotion-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.promotion-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.promotion-header {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    padding: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.promotion-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.promotion-close:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: rotate(90deg);
+}
+
+.promotion-title {
+    color: white;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.promotion-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+}
+
+.promotion-content {
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.discount-badge {
+    display: inline-block;
+    background: #ffeb3b;
+    color: #333;
+    font-size: 3rem;
+    font-weight: 800;
+    padding: 20px 40px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+    position: relative;
+    animation: pulse 2s infinite;
+}
+
+.discount-badge::after {
+    content: '첫 이용 고객 한정';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff6b6b;
+    color: white;
+    font-size: 0.9rem;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.promotion-features {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.promotion-features li {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.1rem;
+}
+
+.promotion-features li::before {
+    content: '✓';
+    color: #4caf50;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.promotion-cta {
+    margin-top: 30px;
+}
+
+.promotion-btn {
+    background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 180, 216, 0.4);
+}
+
+.promotion-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 30px rgba(0, 180, 216, 0.6);
+}
+
+.promotion-timer {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.countdown {
+    font-weight: bold;
+    color: #ff6b6b;
+    font-size: 1.1rem;
+}
+
+/* 플로팅 배너 */
+.floating-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    box-shadow: 0 4px 20px rgba(76, 175, 80, 0.4);
+    cursor: pointer;
+    z-index: 1000;
+    animation: slideInLeft 0.5s ease;
+    transition: all 0.3s ease;
+}
+
+.floating-banner:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 30px rgba(76, 175, 80, 0.6);
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* 소셜 공유 버튼 */
+.social-share {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+}
+
+.social-share-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 24px;
+}
+
+.social-share-btn:hover {
+    transform: translateX(5px) scale(1.1);
+}
+
+.social-share-btn.kakao {
+    background: #fee500;
+    color: #3c1e1e;
+}
+
+.social-share-btn.naver {
+    background: #03c75a;
+}
+
+.social-share-btn.facebook {
+    background: #1877f2;
+}
+
+.social-share-btn.instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+/* 리뷰 요청 배너 */
+.review-request-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(90deg, #ffd700 0%, #ffed4e 100%);
+    padding: 15px;
+    text-align: center;
+    z-index: 500;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+}
+
+.review-request-banner.active {
+    transform: translateY(0);
+}
+
+.review-request-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.review-stars {
+    display: flex;
+    gap: 5px;
+    font-size: 24px;
+}
+
+.review-star {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.review-star:hover {
+    transform: scale(1.2);
+}
+
+/* 쿠폰 카드 */
+.coupon-card {
+    background: white;
+    border: 2px dashed #00b4d8;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.coupon-card::before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #f8f9fa;
+    border-radius: 50%;
+    top: 50%;
+    left: -20px;
+    transform: translateY(-50%);
+}
+
+.coupon-card::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #f8f9fa;
+    border-radius: 50%;
+    top: 50%;
+    right: -20px;
+    transform: translateY(-50%);
+}
+
+.coupon-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.coupon-discount {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #00b4d8;
+}
+
+.coupon-code {
+    background: #f0f0f0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-family: monospace;
+    font-weight: 600;
+}
+
+.coupon-description {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.coupon-expiry {
+    font-size: 0.9rem;
+    color: #999;
+}
+
+/* 추천인 프로그램 */
+.referral-section {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    margin: 40px 0;
+}
+
+.referral-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #0077b6;
+    margin-bottom: 20px;
+}
+
+.referral-code-box {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.referral-code {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #00b4d8;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.copy-btn {
+    background: #00b4d8;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+    background: #0077b6;
+    transform: translateY(-2px);
+}
+
+.copy-btn.copied {
+    background: #4caf50;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .social-share {
+        flex-direction: row;
+        left: 50%;
+        top: auto;
+        bottom: 100px;
+        transform: translateX(-50%);
+    }
+    
+    .floating-banner {
+        left: 10px;
+        right: 10px;
+        text-align: center;
+    }
+    
+    .promotion-popup {
+        width: 95%;
+    }
+}

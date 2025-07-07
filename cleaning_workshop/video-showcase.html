@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>청소공작소 - AI가 만든 광고 영상</title>
+    <meta name="description" content="Google Veo AI로 제작한 청소공작소 광고 영상을 만나보세요">
+    
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 스타일 -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .video-hero {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 20s linear infinite;
+        }
+        
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .video-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ai-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .ai-badge span {
+            background: linear-gradient(45deg, #4285f4, #ea4335, #fbbc04, #4285f4);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientMove 3s ease infinite;
+            font-weight: 700;
+        }
+        
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin: 80px 0;
+        }
+        
+        .video-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            padding-bottom: 56.25%;
+            background: #f0f0f0;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(0,0,0,0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .video-card:hover .play-button {
+            background: #00b4d8;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-left: 25px solid white;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            margin-left: 5px;
+        }
+        
+        .video-info {
+            padding: 30px;
+        }
+        
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .video-duration {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .video-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .video-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .video-tag {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+        
+        /* 비디오 모달 */
+        .video-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 20px;
+        }
+        
+        .video-modal.active {
+            display: flex;
+        }
+        
+        .video-modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            aspect-ratio: 16/9;
+            background: black;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .video-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .video-modal-close:hover {
+            background: rgba(255,255,255,0.2);
+            transform: rotate(90deg);
+        }
+        
+        /* AI 제작 프로세스 */
+        .ai-process {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .process-step {
+            text-align: center;
+        }
+        
+        .process-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin: 0 auto 20px;
+            color: white;
+        }
+        
+        .stats-section {
+            background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .stat-item {
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        
+        .cta-section {
+            background: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .cta-button {
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cta-button.primary {
+            background: #00b4d8;
+            color: white;
+        }
+        
+        .cta-button.secondary {
+            background: white;
+            color: #00b4d8;
+            border: 2px solid #00b4d8;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.svg" alt="청소공작소" class="logo">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">홈</a></li>
+                <li><a href="#videos" class="nav-link">광고 영상</a></li>
+                <li><a href="#process" class="nav-link">제작 과정</a></li>
+                <li><a href="booking.html" class="nav-link">예약하기</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- 히어로 섹션 -->
+    <section class="video-hero">
+        <div class="video-hero-content">
+            <div class="container">
+                <div class="ai-badge">
+                    <span>Powered by Google Gemini Ultra + Veo</span>
+                </div>
+                <h1 style="font-size: 3.5rem; margin-bottom: 20px;">
+                    AI가 만든 청소공작소 광고
+                </h1>
+                <p style="font-size: 1.3rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">
+                    최첨단 AI 기술로 제작된 광고 영상으로<br>
+                    청소공작소의 혁신적인 서비스를 경험하세요
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 비디오 그리드 -->
+    <section class="section-padding" id="videos">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">AI 제작 광고 영상</h2>
+                <p class="section-desc">
+                    Google Veo로 생성된 혁신적인 광고 컨텐츠
+                </p>
+            </div>
+            
+            <div class="video-grid">
+                <!-- 비디오 1 -->
+                <div class="video-card" onclick="openVideo('video1')">
+                    <div class="video-thumbnail">
+                        <img src="images/video-thumb-1.jpg" alt="변화의 순간">
+                        <div class="play-button">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">변화의 순간</h3>
+                        <span class="video-duration">30초</span>
+                        <p class="video-description">
+                            지친 일상에서 깨끗한 공간으로의 극적인 변화를 담은 메인 광고
+                        </p>
+                        <div class="video-tags">
+                            <span class="video-tag">#라이프스타일</span>
+                            <span class="video-tag">#변화</span>
+                            <span class="video-tag">#30%할인</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 비디오 2 -->
+                <div class="video-card" onclick="openVideo('video2')">
+                    <div class="video-thumbnail">
+                        <img src="images/video-thumb-2.jpg" alt="AI 챗봇 소개">
+                        <div class="play-button">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">24시간 AI 상담</h3>
+                        <span class="video-duration">20초</span>
+                        <p class="video-description">
+                            언제든 예약 가능한 AI 챗봇 시스템을 소개하는 테크 광고
+                        </p>
+                        <div class="video-tags">
+                            <span class="video-tag">#AI챗봇</span>
+                            <span class="video-tag">#24시간</span>
+                            <span class="video-tag">#편의성</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 비디오 3 -->
+                <div class="video-card" onclick="openVideo('video3')">
+                    <div class="video-thumbnail">
+                        <img src="images/video-thumb-3.jpg" alt="전문가 스토리">
+                        <div class="play-button">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">신뢰할 수 있는 전문가</h3>
+                        <span class="video-duration">45초</span>
+                        <p class="video-description">
+                            청소 전문가의 하루를 담은 다큐멘터리 스타일 광고
+                        </p>
+                        <div class="video-tags">
+                            <span class="video-tag">#전문성</span>
+                            <span class="video-tag">#신뢰</span>
+                            <span class="video-tag">#스토리</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 비디오 4 -->
+                <div class="video-card" onclick="openVideo('video4')">
+                    <div class="video-thumbnail">
+                        <img src="images/video-thumb-4.jpg" alt="타임랩스 변신">
+                        <div class="play-button">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">15초의 마법</h3>
+                        <span class="video-duration">15초</span>
+                        <p class="video-description">
+                            초고속 타임랩스로 보여주는 놀라운 변화
+                        </p>
+                        <div class="video-tags">
+                            <span class="video-tag">#타임랩스</span>
+                            <span class="video-tag">#변신</span>
+                            <span class="video-tag">#SNS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI 제작 프로세스 -->
+    <section class="ai-process" id="process">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">AI 광고 제작 프로세스</h2>
+                <p class="section-desc">
+                    Google Gemini Ultra와 Veo를 활용한 혁신적인 제작 과정
+                </p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="process-icon">📝</div>
+                    <h3>스크립트 작성</h3>
+                    <p>Gemini Ultra로 광고 시나리오와 스토리보드 생성</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-icon">🎨</div>
+                    <h3>프롬프트 최적화</h3>
+                    <p>Veo에 최적화된 상세한 비주얼 프롬프트 작성</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-icon">🎬</div>
+                    <h3>영상 생성</h3>
+                    <p>Google Veo로 고품질 광고 영상 자동 생성</p>
+                </div>
+                <div class="process-step">
+                    <div class="process-icon">✨</div>
+                    <h3>후처리 & 배포</h3>
+                    <p>브랜딩 요소 추가 및 플랫폼별 최적화</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 통계 섹션 -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 10px;">AI 광고의 놀라운 성과</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">85%</div>
+                    <p>제작 시간 단축</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3.5x</div>
+                    <p>참여율 증가</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">60%</div>
+                    <p>비용 절감</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <p>제작 가능</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA 섹션 -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="section-title">AI가 만든 광고, 실제 서비스로 경험하세요</h2>
+            <p class="section-desc">
+                혁신적인 기술과 전문적인 청소 서비스의 만남
+            </p>
+            <div class="cta-buttons">
+                <a href="booking.html" class="cta-button primary">
+                    <span>지금 예약하기</span>
+                    <span>→</span>
+                </a>
+                <a href="#" class="cta-button secondary" onclick="shareVideo()">
+                    <span>영상 공유하기</span>
+                    <span>📤</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 비디오 모달 -->
+    <div class="video-modal" id="videoModal">
+        <button class="video-modal-close" onclick="closeVideo()">×</button>
+        <div class="video-modal-content">
+            <iframe id="videoFrame" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>청소공작소</h3>
+                <p>AI 기술과 함께하는 스마트한 청소</p>
+            </div>
+            <div class="footer-section">
+                <h4>기술 파트너</h4>
+                <p>Google Gemini Ultra</p>
+                <p>Google Veo</p>
+            </div>
+            <div class="footer-section">
+                <h4>문의</h4>
+                <p>광고 제작 문의: ai@cleaningworkshop.co.kr</p>
+                <p>서비스 예약: 1588-4954</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 청소공작소. Powered by AI.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 비디오 URL 매핑 (실제 Veo로 생성한 영상 URL로 교체)
+        const videoUrls = {
+            video1: 'https://www.youtube.com/embed/VIDEO_ID_1',
+            video2: 'https://www.youtube.com/embed/VIDEO_ID_2',
+            video3: 'https://www.youtube.com/embed/VIDEO_ID_3',
+            video4: 'https://www.youtube.com/embed/VIDEO_ID_4'
+        };
+
+        function openVideo(videoId) {
+            const modal = document.getElementById('videoModal');
+            const frame = document.getElementById('videoFrame');
+            
+            // 실제 구현시 Veo 생성 영상 URL로 교체
+            frame.src = videoUrls[videoId] || '';
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideo() {
+            const modal = document.getElementById('videoModal');
+            const frame = document.getElementById('videoFrame');
+            
+            modal.classList.remove('active');
+            frame.src = '';
+            document.body.style.overflow = '';
+        }
+
+        function shareVideo() {
+            if (navigator.share) {
+                navigator.share({
+                    title: '청소공작소 AI 광고',
+                    text: 'Google Veo로 만든 놀라운 광고를 확인하세요!',
+                    url: window.location.href
+                });
+            } else {
+                alert('공유 링크가 복사되었습니다!');
+            }
+        }
+
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeVideo();
+            }
+        });
+
+        // 모달 외부 클릭시 닫기
+        document.getElementById('videoModal').addEventListener('click', (e) => {
+            if (e.target.id === 'videoModal') {
+                closeVideo();
+            }
+        });
+    </script>
+</body>
+</html>

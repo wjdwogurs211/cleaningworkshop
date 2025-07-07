@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>추천인 프로그램 - 청소공작소</title>
+    <meta name="description" content="친구를 추천하고 함께 할인받으세요! 추천인과 신규 고객 모두 혜택을 받습니다.">
+    
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 스타일 -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/promotion.css">
+    
+    <style>
+        .referral-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .referral-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .referral-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .referral-step {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .referral-step:hover {
+            transform: translateY(-10px);
+        }
+        
+        .step-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 40px 0;
+        }
+        
+        .benefit-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        
+        .benefit-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #00b4d8;
+            margin-bottom: 10px;
+        }
+        
+        .my-referral-section {
+            background: #f8f9fa;
+            padding: 60px 0;
+        }
+        
+        .referral-link-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .referral-link {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            word-break: break-all;
+        }
+        
+        .share-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .share-button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .share-button.kakao {
+            background: #fee500;
+            color: #3c1e1e;
+        }
+        
+        .share-button.naver {
+            background: #03c75a;
+            color: white;
+        }
+        
+        .share-button.copy {
+            background: #00b4d8;
+            color: white;
+        }
+        
+        .share-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .faq-section {
+            padding: 60px 0;
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+        
+        .faq-answer {
+            padding: 0 20px 20px;
+            display: none;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.svg" alt="청소공작소" class="logo">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">홈</a></li>
+                <li><a href="move-in-cleaning.html" class="nav-link">입주청소</a></li>
+                <li><a href="ac-cleaning.html" class="nav-link">에어컨청소</a></li>
+                <li><a href="sofa-cleaning.html" class="nav-link">쇼파/침구청소</a></li>
+                <li><a href="window-cleaning.html" class="nav-link">유리창청소</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- 히어로 섹션 -->
+    <section class="referral-hero">
+        <div class="container">
+            <h1>친구와 함께 할인받으세요!</h1>
+            <p class="hero-desc">추천인과 신규 고객 모두에게 특별한 혜택을 드립니다</p>
+        </div>
+    </section>
+
+    <!-- 추천 프로세스 -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">간단한 3단계 추천 프로세스</h2>
+            </div>
+            
+            <div class="referral-steps">
+                <div class="referral-step">
+                    <div class="step-icon">📨</div>
+                    <h3>1단계: 추천 링크 공유</h3>
+                    <p>나만의 추천 코드를 친구에게 공유하세요</p>
+                </div>
+                <div class="referral-step">
+                    <div class="step-icon">🎯</div>
+                    <h3>2단계: 친구가 서비스 이용</h3>
+                    <p>친구가 추천 코드로 첫 예약을 완료합니다</p>
+                </div>
+                <div class="referral-step">
+                    <div class="step-icon">🎁</div>
+                    <h3>3단계: 함께 혜택 받기</h3>
+                    <p>추천인과 친구 모두 할인 쿠폰을 받습니다</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 혜택 안내 -->
+    <section class="section-padding bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">추천 혜택</h2>
+                <p class="section-desc">추천할수록 더 많은 혜택이!</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h3>추천인 혜택</h3>
+                    <div class="benefit-amount">20,000원</div>
+                    <p>친구가 서비스 이용 시<br>현금처럼 사용 가능한 포인트</p>
+                    <ul style="text-align: left; margin-top: 20px;">
+                        <li>추천 인원 제한 없음</li>
+                        <li>포인트 즉시 지급</li>
+                        <li>모든 서비스에 사용 가능</li>
+                    </ul>
+                </div>
+                
+                <div class="benefit-card">
+                    <h3>신규 고객 혜택</h3>
+                    <div class="benefit-amount">30% 할인</div>
+                    <p>추천 코드로 가입 시<br>첫 이용 특별 할인</p>
+                    <ul style="text-align: left; margin-top: 20px;">
+                        <li>최대 5만원 할인</li>
+                        <li>모든 서비스 적용</li>
+                        <li>추가 혜택 제공</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 내 추천 코드 -->
+    <section class="my-referral-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">내 추천 코드</h2>
+            </div>
+            
+            <div class="referral-link-box">
+                <h3>나의 추천 코드</h3>
+                <div class="referral-code-box">
+                    <div class="referral-code" id="myReferralCode">CLEAN2024</div>
+                    <button class="copy-btn" onclick="copyReferralCode()">
+                        코드 복사하기
+                    </button>
+                </div>
+                
+                <h3 style="margin-top: 30px;">추천 링크</h3>
+                <div class="referral-link" id="myReferralLink">
+                    https://cleaningworkshop.co.kr/join?ref=CLEAN2024
+                </div>
+                
+                <div class="share-buttons">
+                    <button class="share-button kakao" onclick="shareKakao()">
+                        카카오톡 공유
+                    </button>
+                    <button class="share-button naver" onclick="shareNaver()">
+                        네이버 공유
+                    </button>
+                    <button class="share-button copy" onclick="copyReferralLink()">
+                        링크 복사
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 추천 현황 -->
+            <div class="referral-status" style="margin-top: 40px; text-align: center;">
+                <h3>나의 추천 현황</h3>
+                <div style="display: flex; justify-content: center; gap: 40px; margin-top: 20px;">
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 800; color: #00b4d8;">3명</div>
+                        <p>추천 완료</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: 800; color: #4caf50;">60,000원</div>
+                        <p>적립 포인트</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">자주 묻는 질문</h2>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>추천 포인트는 언제 지급되나요?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        친구가 추천 코드를 사용하여 첫 서비스를 완료한 후 24시간 이내에 자동으로 지급됩니다.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>추천 인원에 제한이 있나요?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        아니요, 추천 인원에는 제한이 없습니다. 많이 추천할수록 더 많은 포인트를 받으실 수 있습니다.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>포인트는 어떻게 사용하나요?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        적립된 포인트는 다음 서비스 이용 시 현금처럼 사용하실 수 있습니다. 예약 시 자동으로 적용됩니다.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>추천받은 친구도 추천할 수 있나요?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        네, 추천받아 가입한 고객님도 본인의 추천 코드를 받아 다른 분들을 추천하실 수 있습니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>지금 바로 친구를 추천하세요!</h2>
+            <p>함께하면 더 큰 혜택이 기다립니다</p>
+            <a href="booking.html" class="cta-button">서비스 예약하기</a>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>청소공작소</h3>
+                <p>청소의 과학, 깨끗함의 예술</p>
+            </div>
+            <div class="footer-section">
+                <h4>서비스</h4>
+                <ul>
+                    <li><a href="move-in-cleaning.html">입주청소</a></li>
+                    <li><a href="ac-cleaning.html">에어컨청소</a></li>
+                    <li><a href="sofa-cleaning.html">쇼파/침구청소</a></li>
+                    <li><a href="window-cleaning.html">유리창청소</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>고객센터</h4>
+                <p>전화: 1588-4954</p>
+                <p>이메일: info@cleaningworkshop.co.kr</p>
+                <p>운영시간: 평일 09:00-18:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 청소공작소. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 추천 코드 생성
+        function generateReferralCode() {
+            const code = localStorage.getItem('myReferralCode') || 
+                        'CW' + Math.random().toString(36).substr(2, 6).toUpperCase();
+            localStorage.setItem('myReferralCode', code);
+            return code;
+        }
+
+        // 페이지 로드 시 추천 코드 표시
+        document.addEventListener('DOMContentLoaded', function() {
+            const code = generateReferralCode();
+            document.getElementById('myReferralCode').textContent = code;
+            document.getElementById('myReferralLink').textContent = 
+                `https://cleaningworkshop.co.kr/join?ref=${code}`;
+        });
+
+        // 추천 코드 복사
+        function copyReferralCode() {
+            const code = document.getElementById('myReferralCode').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('추천 코드가 복사되었습니다!');
+            });
+        }
+
+        // 추천 링크 복사
+        function copyReferralLink() {
+            const link = document.getElementById('myReferralLink').textContent;
+            navigator.clipboard.writeText(link).then(() => {
+                alert('추천 링크가 복사되었습니다!');
+            });
+        }
+
+        // 카카오톡 공유
+        function shareKakao() {
+            const code = document.getElementById('myReferralCode').textContent;
+            const text = `청소공작소 첫 이용 30% 할인!\n추천 코드: ${code}\n지금 가입하고 할인받으세요!`;
+            window.open(`https://story.kakao.com/share?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(text)}`);
+        }
+
+        // 네이버 공유
+        function shareNaver() {
+            const link = document.getElementById('myReferralLink').textContent;
+            const title = '청소공작소 추천 이벤트';
+            window.open(`https://share.naver.com/web/shareView.nhn?url=${encodeURIComponent(link)}&title=${encodeURIComponent(title)}`);
+        }
+
+        // FAQ 토글
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+    </script>
+
+    <!-- 프로모션 스크립트 -->
+    <script src="js/promotion.js"></script>
+</body>
+</html>

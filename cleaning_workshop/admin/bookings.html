@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약 관리 - 청소공작소</title>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/svg+xml" href="../logo.svg">
+    
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- 스타일 -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/admin-final.css">
+    <style>
+        /* 예약 관리 페이지 스타일 */
+        .filters-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+        
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .filter-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .filter-input {
+            padding: 8px 12px;
+            border: 1px solid var(--border-gray);
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .bookings-table-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+        }
+        
+        .table-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-gray);
+        }
+        
+        .table-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .table-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .export-btn {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid var(--border-gray);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .export-btn:hover {
+            background: var(--bg-light);
+        }
+        
+        .bookings-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .bookings-table th {
+            background: var(--bg-light);
+            padding: 12px 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .bookings-table td {
+            padding: 15px 20px;
+            border-top: 1px solid var(--border-gray);
+        }
+        
+        .bookings-table tbody tr:hover {
+            background: var(--bg-light);
+        }
+        
+        .customer-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .customer-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .customer-phone {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .service-type {
+            display: inline-block;
+            padding: 4px 10px;
+            background: var(--bg-light);
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .action-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-gray);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .action-icon:hover {
+            background: var(--bg-light);
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+        }
+        
+        .pagination {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-gray);
+        }
+        
+        .pagination-info {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .pagination-controls {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .page-btn {
+            padding: 6px 12px;
+            border: 1px solid var(--border-gray);
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+        }
+        
+        .page-btn:hover:not(:disabled) {
+            background: var(--bg-light);
+        }
+        
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .page-btn.active {
+            background: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+        
+        /* 상태 변경 모달 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+        }
+        
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+        
+        .status-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .status-option {
+            padding: 12px;
+            border: 2px solid var(--border-gray);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .status-option:hover {
+            border-color: var(--primary-blue);
+        }
+        
+        .status-option.selected {
+            border-color: var(--primary-blue);
+            background: #EBF8FF;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+<body class="admin-body">
+    <div class="admin-container">
+        <!-- 사이드바 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../logo.svg" alt="청소공작소" class="sidebar-logo">
+                <h3>관리자 시스템</h3>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <span class="icon">📊</span>
+                    <span>대시보드</span>
+                </a>
+                <a href="bookings.html" class="nav-item active">
+                    <span class="icon">📅</span>
+                    <span>예약 관리</span>
+                </a>
+                <a href="customers.html" class="nav-item">
+                    <span class="icon">👥</span>
+                    <span>고객 관리</span>
+                </a>
+                <a href="notifications.html" class="nav-item">
+                    <span class="icon">🔔</span>
+                    <span>알림 관리</span>
+                </a>
+                <a href="reviews.html" class="nav-item">
+                    <span class="icon">⭐</span>
+                    <span>리뷰 관리</span>
+                </a>
+                <a href="calendar.html" class="nav-item">
+                    <span class="icon">🗓️</span>
+                    <span>일정 관리</span>
+                </a>
+                <a href="reports.html" class="nav-item">
+                    <span class="icon">📈</span>
+                    <span>매출 분석</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <span class="icon">⚙️</span>
+                    <span>설정</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="admin-info">
+                    <span class="admin-name">관리자</span>
+                    <a href="#" class="logout-btn" onclick="logout()">로그아웃</a>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- 메인 콘텐츠 -->
+        <main class="main-content">
+            <!-- 헤더 -->
+            <header class="content-header">
+                <h1>예약 관리</h1>
+                <div class="header-actions">
+                    <button class="btn btn-primary btn-sm" onclick="location.href='../booking.html'">
+                        + 새 예약 추가
+                    </button>
+                </div>
+            </header>
+            
+            <!-- 필터 섹션 -->
+            <div class="filters-section">
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label class="filter-label">기간</label>
+                        <select class="filter-input" id="periodFilter">
+                            <option value="all">전체</option>
+                            <option value="today" selected>오늘</option>
+                            <option value="week">이번 주</option>
+                            <option value="month">이번 달</option>
+                            <option value="custom">기간 지정</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">서비스</label>
+                        <select class="filter-input" id="serviceFilter">
+                            <option value="all">전체</option>
+                            <option value="move-in">입주청소</option>
+                            <option value="ac">에어컨청소</option>
+                            <option value="sofa">쇼파/침구청소</option>
+                            <option value="window">유리창청소</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">상태</label>
+                        <select class="filter-input" id="statusFilter">
+                            <option value="all">전체</option>
+                            <option value="pending">대기중</option>
+                            <option value="confirmed">확정</option>
+                            <option value="completed">완료</option>
+                            <option value="cancelled">취소</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">검색</label>
+                        <input type="text" class="filter-input" id="searchInput" 
+                               placeholder="예약번호, 고객명, 전화번호">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 예약 테이블 -->
+            <div class="bookings-table-container">
+                <div class="table-header">
+                    <h2 class="table-title">예약 목록</h2>
+                    <div class="table-actions">
+                        <button class="export-btn" onclick="exportToExcel()">
+                            📊 엑셀 다운로드
+                        </button>
+                        <button class="export-btn" onclick="printTable()">
+                            🖨️ 인쇄
+                        </button>
+                    </div>
+                </div>
+                
+                <table class="bookings-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">
+                                <input type="checkbox" id="selectAll">
+                            </th>
+                            <th>예약번호</th>
+                            <th>고객정보</th>
+                            <th>서비스</th>
+                            <th>예약일시</th>
+                            <th>주소</th>
+                            <th>금액</th>
+                            <th>상태</th>
+                            <th style="width: 100px;">관리</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTableBody">
+                        <tr>
+                            <td><input type="checkbox" class="booking-checkbox"></td>
+                            <td><strong>#CW20240105</strong></td>
+                            <td>
+                                <div class="customer-info">
+                                    <span class="customer-name">김철수</span>
+                                    <span class="customer-phone">010-1234-5678</span>
+                                </div>
+                            </td>
+                            <td><span class="service-type">입주청소</span></td>
+                            <td>2024-01-05 10:00</td>
+                            <td>서울시 강남구 테헤란로 123</td>
+                            <td><strong>350,000원</strong></td>
+                            <td><span class="status status-pending">대기중</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-icon" onclick="viewBooking('CW20240105')" title="상세보기">
+                                        👁️
+                                    </button>
+                                    <button class="action-icon" onclick="changeStatus('CW20240105')" title="상태변경">
+                                        ✏️
+                                    </button>
+                                    <button class="action-icon" onclick="deleteBooking('CW20240105')" title="삭제">
+                                        🗑️
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="booking-checkbox"></td>
+                            <td><strong>#CW20240104</strong></td>
+                            <td>
+                                <div class="customer-info">
+                                    <span class="customer-name">이영희</span>
+                                    <span class="customer-phone">010-2345-6789</span>
+                                </div>
+                            </td>
+                            <td><span class="service-type">에어컨청소</span></td>
+                            <td>2024-01-05 14:00</td>
+                            <td>서울시 서초구 방배로 456</td>
+                            <td><strong>100,000원</strong></td>
+                            <td><span class="status status-confirmed">확정</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-icon" onclick="viewBooking('CW20240104')" title="상세보기">
+                                        👁️
+                                    </button>
+                                    <button class="action-icon" onclick="changeStatus('CW20240104')" title="상태변경">
+                                        ✏️
+                                    </button>
+                                    <button class="action-icon" onclick="deleteBooking('CW20240104')" title="삭제">
+                                        🗑️
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" class="booking-checkbox"></td>
+                            <td><strong>#CW20240103</strong></td>
+                            <td>
+                                <div class="customer-info">
+                                    <span class="customer-name">박민수</span>
+                                    <span class="customer-phone">010-3456-7890</span>
+                                </div>
+                            </td>
+                            <td><span class="service-type">쇼파청소</span></td>
+                            <td>2024-01-05 16:00</td>
+                            <td>서울시 송파구 올림픽로 789</td>
+                            <td><strong>80,000원</strong></td>
+                            <td><span class="status status-confirmed">확정</span></td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="action-icon" onclick="viewBooking('CW20240103')" title="상세보기">
+                                        👁️
+                                    </button>
+                                    <button class="action-icon" onclick="changeStatus('CW20240103')" title="상태변경">
+                                        ✏️
+                                    </button>
+                                    <button class="action-icon" onclick="deleteBooking('CW20240103')" title="삭제">
+                                        🗑️
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <!-- 페이지네이션 -->
+                <div class="pagination">
+                    <div class="pagination-info">
+                        전체 125개 중 1-10개 표시
+                    </div>
+                    <div class="pagination-controls">
+                        <button class="page-btn" disabled>이전</button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn">4</button>
+                        <button class="page-btn">5</button>
+                        <button class="page-btn">다음</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- 상태 변경 모달 -->
+    <div class="modal" id="statusModal">
+        <div class="modal-content">
+            <h3 class="modal-title">예약 상태 변경</h3>
+            <div class="status-options">
+                <div class="status-option" data-status="pending">
+                    <span class="status status-pending">대기중</span>
+                    <small style="margin-left: 10px;">예약 확인 전</small>
+                </div>
+                <div class="status-option" data-status="confirmed">
+                    <span class="status status-confirmed">확정</span>
+                    <small style="margin-left: 10px;">예약 확정됨</small>
+                </div>
+                <div class="status-option" data-status="completed">
+                    <span class="status status-completed">완료</span>
+                    <small style="margin-left: 10px;">서비스 완료</small>
+                </div>
+                <div class="status-option" data-status="cancelled">
+                    <span class="status status-cancelled">취소</span>
+                    <small style="margin-left: 10px;">예약 취소됨</small>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" onclick="closeModal()">취소</button>
+                <button class="btn btn-primary" onclick="saveStatus()">저장</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 인증 확인
+        function checkAuth() {
+            const auth = sessionStorage.getItem('adminAuth') || localStorage.getItem('adminAuth');
+            if (!auth) {
+                window.location.href = 'login.html';
+                return false;
+            }
+            return true;
+        }
+        
+        // 로그아웃
+        function logout() {
+            if (confirm('로그아웃 하시겠습니까?')) {
+                sessionStorage.removeItem('adminAuth');
+                localStorage.removeItem('adminAuth');
+                window.location.href = 'login.html';
+            }
+        }
+        
+        // 예약 상세 보기
+        function viewBooking(bookingId) {
+            window.location.href = `booking-detail.html?id=${bookingId}`;
+        }
+        
+        // 상태 변경
+        let currentBookingId = null;
+        
+        function changeStatus(bookingId) {
+            currentBookingId = bookingId;
+            document.getElementById('statusModal').classList.add('active');
+        }
+        
+        function closeModal() {
+            document.getElementById('statusModal').classList.remove('active');
+            document.querySelectorAll('.status-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+        }
+        
+        // 상태 옵션 선택
+        document.querySelectorAll('.status-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelectorAll('.status-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                this.classList.add('selected');
+            });
+        });
+        
+        function saveStatus() {
+            const selectedStatus = document.querySelector('.status-option.selected');
+            if (selectedStatus) {
+                // 실제 환경에서는 서버로 상태 업데이트 요청
+                alert(`예약 ${currentBookingId}의 상태가 변경되었습니다.`);
+                closeModal();
+                // 테이블 새로고침
+                location.reload();
+            } else {
+                alert('상태를 선택해주세요.');
+            }
+        }
+        
+        // 예약 삭제
+        function deleteBooking(bookingId) {
+            if (confirm(`예약 ${bookingId}를 삭제하시겠습니까?`)) {
+                // 실제 환경에서는 서버로 삭제 요청
+                alert('예약이 삭제되었습니다.');
+                location.reload();
+            }
+        }
+        
+        // 전체 선택
+        document.getElementById('selectAll').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.booking-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+        });
+        
+        // 엑셀 다운로드
+        function exportToExcel() {
+            alert('엑셀 파일 다운로드 기능은 준비 중입니다.');
+        }
+        
+        // 인쇄
+        function printTable() {
+            window.print();
+        }
+        
+        // 페이지 로드시
+        window.addEventListener('load', function() {
+            checkAuth();
+        });
+    </script>
+</body>
+</html>

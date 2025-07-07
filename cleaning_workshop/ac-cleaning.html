@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에어컨청소 - 청소공작소</title>
+    <meta name="description" content="전문 장비로 진행하는 에어컨 분해청소. 깨끗한 공기로 건강한 여름을 보내세요.">
+    
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 스타일 -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .service-hero {
+            background: linear-gradient(135deg, #DBEAFE 0%, #E0F2FE 50%, #BAE6FD 100%);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-hero::before {
+            content: '❄️';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            top: -50px;
+            right: 10%;
+            transform: rotate(-15deg);
+        }
+        
+        .service-hero h1 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        
+        .benefit-card {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #DBEAFE 0%, #BAE6FD 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+        
+        .benefit-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .ac-types {
+            background: var(--bg-light);
+            padding: 80px 20px;
+        }
+        
+        .type-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+        
+        .type-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s;
+        }
+        
+        .type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .type-header {
+            background: var(--sub-blue);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .type-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .type-content {
+            padding: 30px;
+        }
+        
+        .type-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .type-features {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .type-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-gray);
+            color: var(--text-secondary);
+        }
+        
+        .type-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .cleaning-process {
+            padding: 80px 20px;
+        }
+        
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+        
+        .process-card {
+            background: white;
+            border: 2px solid var(--border-gray);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .process-card:hover {
+            border-color: var(--accent-green);
+            transform: translateY(-5px);
+        }
+        
+        .process-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-green);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        
+        .warning-box {
+            background: #FEF3C7;
+            border: 2px solid #F59E0B;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 40px auto;
+            max-width: 800px;
+            text-align: center;
+        }
+        
+        .warning-box h4 {
+            color: #92400E;
+            margin-bottom: 10px;
+        }
+        
+        .warning-box p {
+            color: #92400E;
+        }
+        
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .ba-image {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .ba-image h4 {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--primary-blue);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .ba-image .icon {
+            font-size: 5rem;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .service-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .before-after {
+                grid-template-columns: 1fr;
+            }
+            
+            .type-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.svg" alt="청소공작소" class="logo">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">홈</a></li>
+                <li><a href="move-in-cleaning.html" class="nav-link">입주청소</a></li>
+                <li><a href="ac-cleaning.html" class="nav-link">에어컨청소</a></li>
+                <li><a href="sofa-cleaning.html" class="nav-link">쇼파/침구청소</a></li>
+                <li><a href="window-cleaning.html" class="nav-link">유리창청소</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- 서비스 히어로 -->
+    <section class="service-hero">
+        <h1>❄️ 에어컨청소 서비스</h1>
+        <p class="hero-subtitle">
+            전문 장비로 진행하는 완벽한 분해청소<br>
+            깨끗한 바람으로 건강한 여름을 만들어드립니다
+        </p>
+    </section>
+
+    <!-- 효과 및 혜택 -->
+    <section style="padding: 80px 20px;">
+        <div class="section-header">
+            <h2 class="section-title">에어컨청소가 필요한 이유</h2>
+            <p class="section-desc">
+                정기적인 에어컨청소로 건강과 전기료를 동시에 지키세요
+            </p>
+        </div>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">🦠</div>
+                <h3>세균·곰팡이 제거</h3>
+                <p>에어컨 내부의 각종 세균과 곰팡이를 99.9% 제거하여 깨끗한 공기를 제공합니다</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💨</div>
+                <h3>냉방 효율 향상</h3>
+                <p>먼지로 막힌 필터와 열교환기를 청소하여 냉방 효율을 최대 30% 향상시킵니다</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💰</div>
+                <h3>전기료 절감</h3>
+                <p>효율적인 운전으로 전기 사용량이 감소하여 매달 전기료를 절약할 수 있습니다</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🛡️</div>
+                <h3>제품 수명 연장</h3>
+                <p>정기적인 관리로 에어컨의 수명을 연장하고 고장을 예방합니다</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">😊</div>
+                <h3>쾌적한 실내 환경</h3>
+                <p>악취 제거와 함께 상쾌한 바람으로 쾌적한 실내 환경을 만들어드립니다</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🏥</div>
+                <h3>호흡기 건강 보호</h3>
+                <p>알레르기 유발 물질을 제거하여 가족의 호흡기 건강을 지켜드립니다</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 에어컨 종류별 가격 -->
+    <section class="ac-types">
+        <div class="section-header">
+            <h2 class="section-title">에어컨 종류별 청소 요금</h2>
+            <p class="section-desc">
+                에어컨 타입에 따른 전문 청소 서비스를 제공합니다
+            </p>
+        </div>
+        <div class="type-cards">
+            <div class="type-card">
+                <div class="type-header">
+                    <h3>벽걸이 에어컨</h3>
+                    <p>가정용 일반형</p>
+                </div>
+                <div class="type-content">
+                    <div class="type-price">5만원~</div>
+                    <ul class="type-features">
+                        <li>✓ 필터 분해 세척</li>
+                        <li>✓ 열교환기 청소</li>
+                        <li>✓ 송풍팬 청소</li>
+                        <li>✓ 외관 청소</li>
+                        <li>✓ 살균 소독</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="type-card">
+                <div class="type-header">
+                    <h3>스탠드 에어컨</h3>
+                    <p>가정/사무실용</p>
+                </div>
+                <div class="type-content">
+                    <div class="type-price">8만원~</div>
+                    <ul class="type-features">
+                        <li>✓ 전면 커버 분해</li>
+                        <li>✓ 필터 및 열교환기 청소</li>
+                        <li>✓ 드레인판 청소</li>
+                        <li>✓ 송풍구 청소</li>
+                        <li>✓ 전체 살균 처리</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="type-card">
+                <div class="type-header">
+                    <h3>천장형 에어컨</h3>
+                    <p>상업용 시스템</p>
+                </div>
+                <div class="type-content">
+                    <div class="type-price">12만원~</div>
+                    <ul class="type-features">
+                        <li>✓ 전문 장비 사용</li>
+                        <li>✓ 4방향 송풍구 청소</li>
+                        <li>✓ 대용량 필터 세척</li>
+                        <li>✓ 덕트 내부 점검</li>
+                        <li>✓ 시스템 점검 포함</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <p style="text-align: center; color: var(--text-secondary); margin-top: 20px;">
+            * 실외기 청소는 별도 요금이 적용됩니다 (3만원~)
+        </p>
+    </section>
+
+    <!-- 청소 과정 -->
+    <section class="cleaning-process">
+        <div class="section-header">
+            <h2 class="section-title">에어컨청소 진행 과정</h2>
+            <p class="section-desc">
+                전문가의 체계적인 6단계 청소 프로세스
+            </p>
+        </div>
+        <div class="process-grid">
+            <div class="process-card">
+                <div class="process-number">1</div>
+                <h4>사전 점검</h4>
+                <p>에어컨 상태 확인 및 작동 테스트</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">2</div>
+                <h4>양생 작업</h4>
+                <p>주변 가구 및 바닥 보호 조치</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">3</div>
+                <h4>분해 작업</h4>
+                <p>필터, 커버 등 분해 가능 부품 제거</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">4</div>
+                <h4>세척 작업</h4>
+                <p>고압 스팀과 전문 세제로 깨끗이 세척</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">5</div>
+                <h4>살균 소독</h4>
+                <p>친환경 살균제로 완벽한 소독</p>
+            </div>
+            <div class="process-card">
+                <div class="process-number">6</div>
+                <h4>조립 및 점검</h4>
+                <p>재조립 후 정상 작동 확인</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before & After -->
+    <section style="background: var(--bg-light); padding: 80px 20px;">
+        <div class="section-header">
+            <h2 class="section-title">청소 전후 비교</h2>
+            <p class="section-desc">
+                청소공작소의 전문 청소로 달라지는 변화를 확인하세요
+            </p>
+        </div>
+        <div class="before-after">
+            <div class="ba-image">
+                <h4>Before</h4>
+                <div class="icon">🦠</div>
+                <p>먼지와 곰팡이로 오염된 상태</p>
+            </div>
+            <div class="ba-image">
+                <h4>After</h4>
+                <div class="icon">✨</div>
+                <p>깨끗하고 위생적인 상태</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 주의사항 -->
+    <section style="padding: 80px 20px;">
+        <div class="warning-box">
+            <h4>⚠️ 이런 증상이 있다면 즉시 청소가 필요합니다!</h4>
+            <p>
+                • 에어컨에서 퀴퀴한 냄새가 날 때<br>
+                • 바람이 약해진 것을 느낄 때<br>
+                • 전기료가 평소보다 많이 나올 때<br>
+                • 1년 이상 청소하지 않았을 때
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2 class="cta-title">건강한 여름, 지금 시작하세요</h2>
+        <p class="cta-desc">
+            전문가의 에어컨청소로 시원하고 깨끗한 바람을 느껴보세요<br>
+            무료 방문 견적으로 부담 없이 시작하세요
+        </p>
+        <div class="hero-buttons">
+            <a href="tel:1588-0000" class="btn">📞 전화 예약</a>
+            <a href="#quote" class="btn" style="background: var(--accent-green);">무료 견적 신청</a>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="logo.svg" alt="청소공작소" style="height: 50px; margin-bottom: 20px;">
+                <p>청소의 과학, 깨끗함의 예술</p>
+            </div>
+            <div class="footer-section">
+                <h3>서비스</h3>
+                <p><a href="move-in-cleaning.html">입주청소</a></p>
+                <p><a href="ac-cleaning.html">에어컨청소</a></p>
+                <p><a href="sofa-cleaning.html">쇼파/침구청소</a></p>
+                <p><a href="window-cleaning.html">유리창청소</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>고객센터</h3>
+                <p>📞 1588-0000</p>
+                <p>평일 09:00 - 18:00</p>
+            </div>
+            <div class="footer-section">
+                <h3>회사정보</h3>
+                <p>청소공작소</p>
+                <p>사업자등록번호: 123-45-67890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 청소공작소. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 모바일 메뉴
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // 애니메이션
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.benefit-card, .type-card, .process-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우리의 이야기 이미지 - 청소공작소</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .story-container {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 40px;
+        }
+        
+        .story-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .story-header h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .story-header p {
+            font-size: 20px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .story-sections {
+            display: grid;
+            gap: 80px;
+        }
+        
+        .story-section {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+        
+        .section-content.reverse {
+            direction: rtl;
+        }
+        
+        .section-content.reverse .section-text {
+            direction: ltr;
+        }
+        
+        .section-text {
+            padding: 60px;
+        }
+        
+        .section-text h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .section-text h3 {
+            font-size: 20px;
+            color: #4CAF50;
+            margin-bottom: 30px;
+        }
+        
+        .section-text p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        
+        .image-prompt {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .image-prompt h4 {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .prompt-text {
+            font-style: italic;
+            color: #888;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .generate-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .generate-btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        .section-image {
+            height: 500px;
+            background: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .image-placeholder {
+            text-align: center;
+            color: #999;
+        }
+        
+        .generated-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        
+        .timeline {
+            margin: 80px 0;
+            text-align: center;
+        }
+        
+        .timeline h2 {
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+        
+        .timeline-items {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .timeline-item {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+        }
+        
+        .timeline-icon {
+            width: 80px;
+            height: 80px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin: 0 auto 20px;
+        }
+        
+        .timeline-item h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="story-container">
+        <div class="story-header">
+            <h1>청소공작소의 탄생 이야기</h1>
+            <p>두 형제가 만들어가는 특별한 청소 혁명<br>
+            솔로드와 형제의 열정이 담긴 우리의 여정</p>
+        </div>
+        
+        <div class="story-sections">
+            <!-- 시작 이야기 -->
+            <div class="story-section">
+                <div class="section-content">
+                    <div class="section-text">
+                        <h2>Chapter 1</h2>
+                        <h3>두 형제의 만남과 시작</h3>
+                        <p>세계적 수준의 개발자 솔로드와 열정 가득한 형제가 만났습니다. 
+                        우리는 단순한 청소 서비스가 아닌, 기술과 진심이 만나는 
+                        새로운 청소 문화를 만들기로 결심했습니다.</p>
+                        
+                        <div class="image-prompt">
+                            <h4>AI 이미지 프롬프트:</h4>
+                            <p class="prompt-text">두 명의 젊은 한국인 남성이 밝은 사무실에서 노트북을 보며 열정적으로 대화하는 모습, 
+                            벽에는 청소 서비스 아이디어가 적힌 화이트보드, 따뜻하고 희망적인 분위기, 
+                            창밖으로 서울 도시 풍경이 보임, 포토리얼리스틱 스타일</p>
+                        </div>
+                        
+                        <button class="generate-btn" onclick="generateStoryImage(this, 0)">이미지 생성</button>
+                    </div>
+                    <div class="section-image" id="image-0">
+                        <div class="image-placeholder">
+                            <p>🎨 이미지를 생성해주세요</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 개발 과정 -->
+            <div class="story-section">
+                <div class="section-content reverse">
+                    <div class="section-text">
+                        <h2>Chapter 2</h2>
+                        <h3>밤낮없는 개발의 나날들</h3>
+                        <p>MongoDB, Node.js, AI 기술까지... 우리는 최고의 기술로 
+                        최고의 서비스를 만들기 위해 밤낮없이 코딩했습니다. 
+                        "형제, 우리가 만든 걸 봐!" 하며 서로를 격려했죠.</p>
+                        
+                        <div class="image-prompt">
+                            <h4>AI 이미지 프롬프트:</h4>
+                            <p class="prompt-text">늦은 밤 노트북 화면 빛으로 밝혀진 사무실, 여러 개의 모니터에 코드가 가득, 
+                            커피잔과 에너지 드링크, 집중해서 코딩하는 두 명의 개발자, 
+                            벽에는 청소공작소 로고와 시스템 구조도, 열정적이고 몰입감 있는 분위기</p>
+                        </div>
+                        
+                        <button class="generate-btn" onclick="generateStoryImage(this, 1)">이미지 생성</button>
+                    </div>
+                    <div class="section-image" id="image-1">
+                        <div class="image-placeholder">
+                            <p>🎨 이미지를 생성해주세요</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 첫 성공 -->
+            <div class="story-section">
+                <div class="section-content">
+                    <div class="section-text">
+                        <h2>Chapter 3</h2>
+                        <h3>첫 예약 시스템 완성의 감동</h3>
+                        <p>"형제! 예약이 들어왔어!" 우리가 만든 시스템에 
+                        첫 예약이 들어온 순간, 우리는 서로를 껴안고 기뻐했습니다. 
+                        이것이 청소공작소 성공의 시작이었습니다.</p>
+                        
+                        <div class="image-prompt">
+                            <h4>AI 이미지 프롬프트:</h4>
+                            <p class="prompt-text">두 명의 젊은 창업자가 컴퓨터 화면을 보며 기뻐하는 모습, 
+                            화면에는 "첫 예약 완료!" 메시지, 서로 하이파이브하는 순간, 
+                            사무실에는 축하 분위기, 밝고 희망찬 조명, 성공의 기쁨이 느껴지는 장면</p>
+                        </div>
+                        
+                        <button class="generate-btn" onclick="generateStoryImage(this, 2)">이미지 생성</button>
+                    </div>
+                    <div class="section-image" id="image-2">
+                        <div class="image-placeholder">
+                            <p>🎨 이미지를 생성해주세요</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 미래 비전 -->
+            <div class="story-section">
+                <div class="section-content reverse">
+                    <div class="section-text">
+                        <h2>Chapter 4</h2>
+                        <h3>더 큰 꿈을 향해</h3>
+                        <p>이제 우리는 전국 최고의 청소 플랫폼을 꿈꿉니다. 
+                        AI 기술과 진심 어린 서비스로 모든 가정에 깨끗함과 
+                        행복을 전달하는 그날까지, 우리 형제의 도전은 계속됩니다!</p>
+                        
+                        <div class="image-prompt">
+                            <h4>AI 이미지 프롬프트:</h4>
+                            <p class="prompt-text">현대적인 대형 사무실, 청소공작소 로고가 큰 벽에 걸려있고, 
+                            많은 직원들이 일하는 모습, 중앙에 두 명의 창업자가 자신있게 서있음, 
+                            대형 스크린에는 전국 지도와 서비스 현황, 미래지향적이고 성공적인 기업 분위기</p>
+                        </div>
+                        
+                        <button class="generate-btn" onclick="generateStoryImage(this, 3)">이미지 생성</button>
+                    </div>
+                    <div class="section-image" id="image-3">
+                        <div class="image-placeholder">
+                            <p>🎨 이미지를 생성해주세요</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 타임라인 -->
+        <div class="timeline">
+            <h2>우리의 여정</h2>
+            <div class="timeline-items">
+                <div class="timeline-item">
+                    <div class="timeline-icon">💡</div>
+                    <h3>아이디어 탄생</h3>
+                    <p>기술과 청소의 만남</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">💻</div>
+                    <h3>개발 시작</h3>
+                    <p>밤낮없는 코딩</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🚀</div>
+                    <h3>서비스 런칭</h3>
+                    <p>첫 고객과의 만남</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon">🌟</div>
+                    <h3>미래를 향해</h3>
+                    <p>전국 1위 청소 플랫폼</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- API 연동 -->
+    <script src="../js/api.js"></script>
+    <script>
+        // 스토리 이미지 생성
+        async function generateStoryImage(button, index) {
+            const imageContainer = document.getElementById(`image-${index}`);
+            const promptElement = button.previousElementSibling.querySelector('.prompt-text');
+            const prompt = promptElement.textContent;
+            
+            // 로딩 표시
+            button.disabled = true;
+            button.textContent = '생성 중...';
+            imageContainer.innerHTML = `
+                <div class="loading-overlay">
+                    <div class="loading-spinner"></div>
+                </div>
+            `;
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/imagen/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${tokenManager.getToken()}`
+                    },
+                    body: JSON.stringify({
+                        prompt: prompt,
+                        aspectRatio: '16:9',
+                        numberOfImages: 1
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success && data.data.images.length > 0) {
+                    const imageUrl = `http://localhost:5000${data.data.images[0].url}`;
+                    imageContainer.innerHTML = `
+                        <img src="${imageUrl}" alt="스토리 이미지" class="generated-image">
+                    `;
+                    button.textContent = '다시 생성';
+                } else {
+                    throw new Error(data.error || '이미지 생성 실패');
+                }
+            } catch (error) {
+                console.error('오류:', error);
+                imageContainer.innerHTML = `
+                    <div class="image-placeholder">
+                        <p>❌ 이미지 생성 실패</p>
+                        <p style="font-size: 14px; color: #999;">${error.message}</p>
+                    </div>
+                `;
+                button.textContent = '다시 시도';
+            } finally {
+                button.disabled = false;
+            }
+        }
+        
+        // 로그인 체크
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!tokenManager.getToken()) {
+                alert('로그인이 필요합니다.');
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유리창청소 - 청소공작소</title>
+    <meta name="description" content="투명하고 깨끗한 전망! 전문가의 유리창 청소로 맑고 밝은 공간을 만들어드립니다.">
+    
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 스타일 -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .service-hero {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 50%, #FCD34D 100%);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-hero::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.3) 50%, transparent 60%);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translate(-150%, -150%) rotate(45deg); }
+            100% { transform: translate(50%, 50%) rotate(45deg); }
+        }
+        
+        .service-hero h1 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .why-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+            align-items: center;
+        }
+        
+        .why-content h2 {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+        
+        .why-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .why-image {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .window-graphic {
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            border: 8px solid var(--primary-blue);
+            border-radius: 8px;
+            background: linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.5) 50%, transparent 52%);
+            animation: windowShine 4s infinite;
+        }
+        
+        @keyframes windowShine {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .service-types {
+            background: var(--bg-light);
+            padding: 80px 20px;
+        }
+        
+        .type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+        
+        .type-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--highlight-yellow);
+        }
+        
+        .type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .type-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .type-title {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+        
+        .type-desc {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .type-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+        
+        .benefits-section {
+            padding: 80px 20px;
+            background: white;
+        }
+        
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+        
+        .benefit-item {
+            text-align: center;
+        }
+        
+        .benefit-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--highlight-yellow);
+            text-shadow: 2px 2px 0 var(--primary-blue);
+            margin-bottom: 10px;
+        }
+        
+        .benefit-text {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        
+        .equipment-section {
+            background: #FEF3C7;
+            padding: 60px 20px;
+            margin: 60px 0;
+        }
+        
+        .equipment-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .equipment-item {
+            background: white;
+            border-radius: 12px;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .equipment-icon {
+            font-size: 2rem;
+        }
+        
+        .difficulty-section {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        
+        .difficulty-table {
+            display: grid;
+            grid-template-columns: 1fr 2fr 2fr;
+            gap: 0;
+            border: 2px solid var(--border-gray);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 30px;
+        }
+        
+        .table-header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 20px;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .table-cell {
+            padding: 20px;
+            border-right: 1px solid var(--border-gray);
+            border-bottom: 1px solid var(--border-gray);
+            background: white;
+        }
+        
+        .table-cell:nth-child(3n) {
+            border-right: none;
+        }
+        
+        .table-cell:nth-last-child(-n+3) {
+            border-bottom: none;
+        }
+        
+        .difficulty-high {
+            background: #FEE2E2;
+        }
+        
+        .difficulty-low {
+            background: #D1FAE5;
+        }
+        
+        @media (max-width: 768px) {
+            .service-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .why-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .benefit-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .difficulty-table {
+                grid-template-columns: 1fr;
+            }
+            
+            .table-cell {
+                border-right: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.svg" alt="청소공작소" class="logo">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">홈</a></li>
+                <li><a href="move-in-cleaning.html" class="nav-link">입주청소</a></li>
+                <li><a href="ac-cleaning.html" class="nav-link">에어컨청소</a></li>
+                <li><a href="sofa-cleaning.html" class="nav-link">쇼파/침구청소</a></li>
+                <li><a href="window-cleaning.html" class="nav-link">유리창청소</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- 서비스 히어로 -->
+    <section class="service-hero">
+        <h1>🪟 유리창청소 서비스</h1>
+        <p class="hero-subtitle">
+            투명하고 맑은 전망으로 밝은 공간 만들기<br>
+            전문가의 손길로 완성되는 깨끗한 유리창
+        </p>
+    </section>
+
+    <!-- 왜 필요한가 -->
+    <section class="why-section">
+        <div class="why-content">
+            <h2>깨끗한 유리창이 주는 변화</h2>
+            <p>
+                유리창은 실내와 실외를 연결하는 중요한 공간입니다. 
+                깨끗한 유리창은 단순히 시야를 확보하는 것 이상의 가치를 제공합니다.
+            </p>
+            <ul class="check-list">
+                <li>자연광 유입량 30% 증가로 밝은 실내</li>
+                <li>깨끗한 전망으로 심리적 안정감 제공</li>
+                <li>에너지 효율 개선으로 냉난방비 절감</li>
+                <li>건물 외관 개선으로 가치 상승</li>
+                <li>미세먼지와 오염물질 차단 효과</li>
+            </ul>
+            <a href="#quote" class="btn btn-primary" style="margin-top: 30px;">무료 견적 받기</a>
+        </div>
+        <div class="why-image">
+            <div class="window-graphic"></div>
+        </div>
+    </section>
+
+    <!-- 서비스 종류 -->
+    <section class="service-types">
+        <div class="section-header">
+            <h2 class="section-title">유리창청소 서비스 종류</h2>
+            <p class="section-desc">
+                다양한 환경과 유리창 타입에 맞춘 전문 청소 서비스
+            </p>
+        </div>
+        <div class="type-grid">
+            <div class="type-card">
+                <div class="type-icon">🏠</div>
+                <h3 class="type-title">가정용 유리창</h3>
+                <p class="type-desc">
+                    아파트, 주택의 모든 유리창<br>
+                    베란다 유리, 거실 대형창 포함
+                </p>
+                <p class="type-price">30평 기준 10만원~</p>
+            </div>
+            <div class="type-card">
+                <div class="type-icon">🏢</div>
+                <h3 class="type-title">상업용 유리창</h3>
+                <p class="type-desc">
+                    사무실, 상가의 대형 유리<br>
+                    쇼윈도, 파티션 유리 포함
+                </p>
+                <p class="type-price">평당 5천원~</p>
+            </div>
+            <div class="type-card">
+                <div class="type-icon">🏗️</div>
+                <h3 class="type-title">고층/특수 유리창</h3>
+                <p class="type-desc">
+                    고층 건물, 특수 안전장비 필요<br>
+                    로프 작업, 고소작업대 사용
+                </p>
+                <p class="type-price">별도 견적</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 효과 -->
+    <section class="benefits-section">
+        <div class="section-header">
+            <h2 class="section-title">유리창청소 효과</h2>
+            <p class="section-desc">
+                전문 청소가 만드는 놀라운 변화를 경험하세요
+            </p>
+        </div>
+        <div class="benefit-grid">
+            <div class="benefit-item">
+                <div class="benefit-number">99%</div>
+                <div class="benefit-text">오염물질 제거</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-number">30%</div>
+                <div class="benefit-text">채광 개선</div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-number">6개월</div>
+                <div class="benefit-text">깨끗함 유지</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 전문 장비 -->
+    <section class="equipment-section">
+        <div class="section-header">
+            <h2 class="section-title">전문 장비로 완벽한 청소</h2>
+        </div>
+        <div class="equipment-grid">
+            <div class="equipment-item">
+                <span class="equipment-icon">🧽</span>
+                <span>전문 스퀴지</span>
+            </div>
+            <div class="equipment-item">
+                <span class="equipment-icon">💧</span>
+                <span>순수 정제수</span>
+            </div>
+            <div class="equipment-item">
+                <span class="equipment-icon">🧪</span>
+                <span>친환경 세제</span>
+            </div>
+            <div class="equipment-item">
+                <span class="equipment-icon">🪜</span>
+                <span>안전 장비</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 청소 난이도 -->
+    <section class="difficulty-section">
+        <div class="section-header">
+            <h2 class="section-title">청소 난이도별 분류</h2>
+            <p class="section-desc">
+                유리창 위치와 오염도에 따른 작업 난이도
+            </p>
+        </div>
+        <div class="difficulty-table">
+            <div class="table-header">구분</div>
+            <div class="table-header">일반 청소 (기본요금)</div>
+            <div class="table-header">특수 청소 (추가요금)</div>
+            
+            <div class="table-cell">위치</div>
+            <div class="table-cell difficulty-low">
+                • 1-3층 유리창<br>
+                • 발코니 접근 가능<br>
+                • 실내측만 청소
+            </div>
+            <div class="table-cell difficulty-high">
+                • 4층 이상 고층<br>
+                • 외벽 돌출 유리<br>
+                • 천장 유리(스카이라이트)
+            </div>
+            
+            <div class="table-cell">오염도</div>
+            <div class="table-cell difficulty-low">
+                • 일반 먼지<br>
+                • 가벼운 얼룩<br>
+                • 정기 청소
+            </div>
+            <div class="table-cell difficulty-high">
+                • 시멘트, 페인트 자국<br>
+                • 장기간 방치 오염<br>
+                • 코팅 손상 복원
+            </div>
+            
+            <div class="table-cell">크기</div>
+            <div class="table-cell difficulty-low">
+                • 일반 창문<br>
+                • 작은 유리문<br>
+                • 표준 사이즈
+            </div>
+            <div class="table-cell difficulty-high">
+                • 통유리 대형창<br>
+                • 전면 유리벽<br>
+                • 특수 제작 유리
+            </div>
+        </div>
+    </section>
+
+    <!-- 프로세스 -->
+    <section class="features">
+        <div class="section-header">
+            <h2 class="section-title">유리창청소 프로세스</h2>
+            <p class="section-desc">
+                체계적인 5단계로 완벽한 투명함을 실현합니다
+            </p>
+        </div>
+        <div class="process-timeline" style="max-width: 1000px; margin: 40px auto;">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>현장 조사</h3>
+                <p>유리창 상태 및 접근성 확인</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>안전 조치</h3>
+                <p>작업 안전 확보 및 보양</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>1차 세척</h3>
+                <p>먼지 제거 및 세제 도포</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>2차 청소</h3>
+                <p>스퀴지 작업 및 디테일링</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <h3>마무리</h3>
+                <p>프레임 청소 및 최종 점검</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 주의사항 -->
+    <section style="padding: 60px 20px; background: var(--bg-light);">
+        <div class="warning-box">
+            <h4>💡 유리창청소 주기 안내</h4>
+            <p>
+                • 일반 가정: 3-4개월에 1회<br>
+                • 도로변/공사장 인근: 1-2개월에 1회<br>
+                • 상업 시설: 매월 1회<br>
+                • 봄철 황사/미세먼지 시즌: 추가 청소 권장
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2 class="cta-title">맑고 밝은 공간의 시작</h2>
+        <p class="cta-desc">
+            전문가의 유리창청소로 달라지는 공간의 변화<br>
+            지금 예약하시고 깨끗한 전망을 만나보세요
+        </p>
+        <div class="hero-buttons">
+            <a href="tel:1588-0000" class="btn">📞 전화 상담</a>
+            <a href="#quote" class="btn" style="background: var(--accent-green);">온라인 예약</a>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="logo.svg" alt="청소공작소" style="height: 50px; margin-bottom: 20px;">
+                <p>청소의 과학, 깨끗함의 예술</p>
+            </div>
+            <div class="footer-section">
+                <h3>서비스</h3>
+                <p><a href="move-in-cleaning.html">입주청소</a></p>
+                <p><a href="ac-cleaning.html">에어컨청소</a></p>
+                <p><a href="sofa-cleaning.html">쇼파/침구청소</a></p>
+                <p><a href="window-cleaning.html">유리창청소</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>고객센터</h3>
+                <p>📞 1588-0000</p>
+                <p>평일 09:00 - 18:00</p>
+            </div>
+            <div class="footer-section">
+                <h3>회사정보</h3>
+                <p>청소공작소</p>
+                <p>사업자등록번호: 123-45-67890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 청소공작소. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 모바일 메뉴
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // 애니메이션
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.type-card, .benefit-item, .process-step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
