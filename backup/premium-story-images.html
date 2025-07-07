@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프리미엄 스토리 이미지 생성 - 청소공작소</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .premium-container {
+            max-width: 1600px;
+            margin: 60px auto;
+            padding: 40px;
+            background: #f9f9f9;
+        }
+        
+        .premium-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .premium-header h1 {
+            font-size: 48px;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: -1px;
+        }
+        
+        .premium-header .luxury-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37 0%, #f9e784 100%);
+            color: #1a1a1a;
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+        
+        .image-generation-grid {
+            display: grid;
+            gap: 60px;
+        }
+        
+        .generation-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .generation-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+        
+        .prompt-section {
+            padding: 60px;
+        }
+        
+        .chapter-badge {
+            display: inline-block;
+            background: #1e40af;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        
+        .prompt-title {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .prompt-description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #4a4a4a;
+            margin-bottom: 30px;
+        }
+        
+        .prompt-box {
+            background: #f5f5f5;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid #d4af37;
+        }
+        
+        .prompt-box h4 {
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .prompt-text {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .generate-premium-btn {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+        
+        .generate-premium-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
+        }
+        
+        .image-display {
+            height: 600px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .image-placeholder {
+            text-align: center;
+            color: #999;
+        }
+        
+        .luxury-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+        
+        .generated-premium-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .loading-luxury {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .luxury-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #d4af37;
+            border-radius: 50%;
+            animation: luxury-spin 1s linear infinite;
+        }
+        
+        @keyframes luxury-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .service-upgrade {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 80px 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .service-upgrade h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            font-weight: 300;
+            letter-spacing: -1px;
+        }
+        
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .price-item {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .price-item h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #d4af37;
+        }
+        
+        .price-before {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 16px;
+        }
+        
+        .price-after {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="premium-container">
+        <div class="premium-header">
+            <div class="luxury-badge">PREMIUM CLEANING SERVICE</div>
+            <h1>청소는 인테리어의 완성입니다</h1>
+            <p style="font-size: 20px; color: #666; line-height: 1.8;">
+                품격 있는 공간을 위한 최고급 클리닝 서비스<br>
+                아이가 집에 들어서는 순간 느끼는 행복을 만들어갑니다
+            </p>
+        </div>
+        
+        <div class="image-generation-grid">
+            <!-- Chapter 1 -->
+            <div class="generation-card">
+                <div class="card-content">
+                    <div class="prompt-section">
+                        <span class="chapter-badge">CHAPTER 01</span>
+                        <h2 class="prompt-title">완벽한 공간의 시작</h2>
+                        <p class="prompt-description">
+                            수억원의 인테리어도 청소가 완벽하지 않으면 빛을 잃습니다.<br>
+                            진정한 럭셔리는 디테일에서 완성됩니다.
+                        </p>
+                        <div class="prompt-box">
+                            <h4>프리미엄 이미지 프롬프트:</h4>
+                            <p class="prompt-text">
+                                초고급 펜트하우스 거실, 이탈리아 대리석 바닥이 거울처럼 반짝이고, 
+                                명품 가구들이 배치된 공간, 통창으로 서울 스카이라인이 보이며, 
+                                햇빛이 들어와 공간 전체가 빛나는 모습, 한국인 어린 아이가 맨발로 
+                                즐겁게 뛰어다니는 장면, 부모가 미소 지으며 바라보는 모습, 
+                                8K 품질의 인테리어 잡지 스타일 사진
+                            </p>
+                        </div>
+                        <button class="generate-premium-btn" onclick="generatePremiumImage(this, 0)">
+                            프리미엄 이미지 생성
+                        </button>
+                    </div>
+                    <div class="image-display" id="premium-image-0">
+                        <div class="image-placeholder">
+                            <div class="luxury-icon">🏛️</div>
+                            <p>고품격 이미지를 생성해주세요</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chapter 2 -->
+            <div class="generation-card">
+                <div class="card-content">
+                    <div class="prompt-section">
+                        <span class="chapter-badge">CHAPTER 02</span>
+                        <h2 class="prompt-title">프리미엄의 기준</h2>
+                        <p class="prompt-description">
+                            하버드 출신 화학자와 인테리어 전문가들이 만든<br>
+                            명품 가구와 고급 소재를 위한 특별한 케어 시스템
+                        </p>
+                        <div class="prompt-box">
+                            <h4>프리미엄 이미지 프롬프트:</h4>
+                            <p class="prompt-text">
+                                현대적인 연구실, 흰 가운을 입은 전문가들이 고급 가구 소재를 
+                                현미경으로 분석하는 모습, 벽면에는 에르메스, 루이비통 등 명품 
+                                브랜드 가구들의 소재 분석 차트, 최첨단 장비들과 함께 일하는 
+                                연구원들, 깨끗하고 미니멀한 공간, 전문성과 신뢰감이 느껴지는 
+                                분위기, 포토리얼리스틱 스타일
+                            </p>
+                        </div>
+                        <button class="generate-premium-btn" onclick="generatePremiumImage(this, 1)">
+                            프리미엄 이미지 생성
+                        </button>
+                    </div>
+                    <div class="image-display" id="premium-image-1">
+                        <div class="image-placeholder">
+                            <div class="luxury-icon">🔬</div>
+                            <p>고품격 이미지를 생성해주세요</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chapter 3 -->
+            <div class="generation-card">
+                <div class="card-content">
+                    <div class="prompt-section">
+                        <span class="chapter-badge">CHAPTER 03</span>
+                        <h2 class="prompt-title">White Glove Service</h2>
+                        <p class="prompt-description">
+                            호텔 수준의 버틀러 서비스를 집에서 경험하세요.<br>
+                            하얀 장갑을 낀 전문가의 품격 있는 케어
+                        </p>
+                        <div class="prompt-box">
+                            <h4>프리미엄 이미지 프롬프트:</h4>
+                            <p class="prompt-text">
+                                흰 장갑을 낀 전문 클리너가 고급 크리스탈 샹들리에를 정성스럽게 
+                                닦는 모습, 배경에는 고급스러운 한국 주택의 인테리어, 대리석 기둥과 
+                                금박 장식, 완벽하게 정돈된 공간, 전문가의 세심한 손길이 강조된 
+                                클로즈업 샷, 5성급 호텔 같은 분위기, 럭셔리 매거진 스타일
+                            </p>
+                        </div>
+                        <button class="generate-premium-btn" onclick="generatePremiumImage(this, 2)">
+                            프리미엄 이미지 생성
+                        </button>
+                    </div>
+                    <div class="image-display" id="premium-image-2">
+                        <div class="image-placeholder">
+                            <div class="luxury-icon">🤵</div>
+                            <p>고품격 이미지를 생성해주세요</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chapter 4 -->
+            <div class="generation-card">
+                <div class="card-content">
+                    <div class="prompt-section">
+                        <span class="chapter-badge">CHAPTER 04</span>
+                        <h2 class="prompt-title">프리미엄 가정의 선택</h2>
+                        <p class="prompt-description">
+                            강남, 한남동, 성북동의 CEO와 전문직 가정이 선택한<br>
+                            대한민국 최고의 프리미엄 클리닝 서비스
+                        </p>
+                        <div class="prompt-box">
+                            <h4>프리미엄 이미지 프롬프트:</h4>
+                            <p class="prompt-text">
+                                저녁 노을이 비치는 한남동 최고급 아파트, 넓은 거실에서 
+                                가족이 함께 시간을 보내는 모습, 아이들이 깨끗한 바닥에서 
+                                안전하게 놀고, 부모는 소파에서 편안히 휴식, 완벽하게 정돈된 
+                                공간, 따뜻하고 행복한 가족의 모습, 백그라운드에 서울 야경, 
+                                감성적이고 따뜻한 분위기의 라이프스타일 사진
+                            </p>
+                        </div>
+                        <button class="generate-premium-btn" onclick="generatePremiumImage(this, 3)">
+                            프리미엄 이미지 생성
+                        </button>
+                    </div>
+                    <div class="image-display" id="premium-image-3">
+                        <div class="image-placeholder">
+                            <div class="luxury-icon">👨‍👩‍👧‍👦</div>
+                            <p>고품격 이미지를 생성해주세요</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 프리미엄 가격 정보 -->
+        <div class="service-upgrade">
+            <h2>Premium Service Pricing</h2>
+            <p style="font-size: 18px; margin-bottom: 40px; opacity: 0.9;">
+                품격이 다른 서비스, 가치가 다른 투자
+            </p>
+            <div class="price-grid">
+                <div class="price-item">
+                    <h3>입주청소</h3>
+                    <div class="price-before">35만원</div>
+                    <div class="price-after">80만원~</div>
+                    <p style="font-size: 14px; margin-top: 10px; opacity: 0.8;">30평 기준</p>
+                </div>
+                <div class="price-item">
+                    <h3>정기청소</h3>
+                    <div class="price-before">15만원</div>
+                    <div class="price-after">35만원~</div>
+                    <p style="font-size: 14px; margin-top: 10px; opacity: 0.8;">주 1회</p>
+                </div>
+                <div class="price-item">
+                    <h3>프리미엄 케어</h3>
+                    <div class="price-before">신규</div>
+                    <div class="price-after">120만원~</div>
+                    <p style="font-size: 14px; margin-top: 10px; opacity: 0.8;">월 정기 관리</p>
+                </div>
+                <div class="price-item">
+                    <h3>VIP 패키지</h3>
+                    <div class="price-before">신규</div>
+                    <div class="price-after">상담 후 결정</div>
+                    <p style="font-size: 14px; margin-top: 10px; opacity: 0.8;">맞춤형 서비스</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- API 연동 -->
+    <script src="../js/api.js"></script>
+    <script>
+        // 프리미엄 이미지 생성
+        async function generatePremiumImage(button, index) {
+            const imageContainer = document.getElementById(`premium-image-${index}`);
+            const promptElement = button.previousElementSibling.querySelector('.prompt-text');
+            const prompt = promptElement.textContent.trim();
+            
+            // 로딩 표시
+            button.disabled = true;
+            button.textContent = '생성 중...';
+            imageContainer.innerHTML = `
+                <div class="loading-luxury">
+                    <div class="luxury-spinner"></div>
+                    <p style="margin-top: 20px; color: #666;">프리미엄 이미지를 생성하고 있습니다...</p>
+                </div>
+            `;
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/imagen/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${tokenManager.getToken()}`
+                    },
+                    body: JSON.stringify({
+                        prompt: prompt,
+                        aspectRatio: '16:9',
+                        numberOfImages: 1
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success && data.data.images.length > 0) {
+                    const imageUrl = `http://localhost:5000${data.data.images[0].url}`;
+                    imageContainer.innerHTML = `
+                        <img src="${imageUrl}" alt="프리미엄 이미지" class="generated-premium-image">
+                    `;
+                    button.textContent = '다시 생성';
+                } else {
+                    throw new Error(data.error || '이미지 생성 실패');
+                }
+            } catch (error) {
+                console.error('오류:', error);
+                imageContainer.innerHTML = `
+                    <div class="image-placeholder">
+                        <div class="luxury-icon">❌</div>
+                        <p>이미지 생성 실패</p>
+                        <p style="font-size: 14px; color: #999; margin-top: 10px;">${error.message}</p>
+                    </div>
+                `;
+                button.textContent = '다시 시도';
+            } finally {
+                button.disabled = false;
+            }
+        }
+        
+        // 로그인 체크
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!tokenManager.getToken()) {
+                alert('로그인이 필요합니다.');
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</body>
+</html>

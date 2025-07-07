@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 대시보드 - 청소공작소</title>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/svg+xml" href="../logo.svg">
+    
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- 스타일 -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/admin-final.css">
+</head>
+<body class="admin-body">
+    <div class="admin-container">
+        <!-- 사이드바 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../logo.svg" alt="청소공작소" class="sidebar-logo">
+                <h3>관리자 시스템</h3>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item active">
+                    <span class="icon">📊</span>
+                    <span>대시보드</span>
+                </a>
+                <a href="bookings.html" class="nav-item">
+                    <span class="icon">📅</span>
+                    <span>예약 관리</span>
+                </a>
+                <a href="customers.html" class="nav-item">
+                    <span class="icon">👥</span>
+                    <span>고객 관리</span>
+                </a>
+                <a href="notifications.html" class="nav-item">
+                    <span class="icon">🔔</span>
+                    <span>알림 관리</span>
+                </a>
+                <a href="reviews.html" class="nav-item">
+                    <span class="icon">⭐</span>
+                    <span>리뷰 관리</span>
+                </a>
+                <a href="calendar.html" class="nav-item">
+                    <span class="icon">🗓️</span>
+                    <span>일정 관리</span>
+                </a>
+                <a href="reports.html" class="nav-item">
+                    <span class="icon">📈</span>
+                    <span>매출 분석</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <span class="icon">⚙️</span>
+                    <span>설정</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="admin-info">
+                    <span class="admin-name">관리자</span>
+                    <a href="#" class="logout-btn" onclick="logout()">로그아웃</a>
+                </div>
+            </div>
+        </aside>
+        
+        <!-- 메인 콘텐츠 -->
+        <main class="main-content">
+            <!-- 헤더 -->
+            <header class="content-header">
+                <h1>대시보드</h1>
+                <div class="header-actions">
+                    <span class="current-date" id="currentDate"></span>
+                    <button class="btn btn-primary btn-sm" onclick="location.href='../booking.html'">
+                        + 새 예약 추가
+                    </button>
+                </div>
+            </header>
+            
+            <!-- 통계 카드 -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #DBEAFE; color: #3B82F6;">📅</div>
+                    <div class="stat-content">
+                        <h3>오늘의 예약</h3>
+                        <p class="stat-number">8</p>
+                        <span class="stat-change positive">+12.5%</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #D1FAE5; color: #10B981;">💰</div>
+                    <div class="stat-content">
+                        <h3>오늘의 매출</h3>
+                        <p class="stat-number">2,850,000원</p>
+                        <span class="stat-change positive">+23.1%</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #E9D5FF; color: #6366F1;">👥</div>
+                    <div class="stat-content">
+                        <h3>신규 고객</h3>
+                        <p class="stat-number">15</p>
+                        <span class="stat-change positive">+5.2%</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #FEF3C7; color: #F59E0B;">⭐</div>
+                    <div class="stat-content">
+                        <h3>평균 평점</h3>
+                        <p class="stat-number">4.8</p>
+                        <span class="stat-change">0.0%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 최근 예약 & 차트 -->
+            <div class="dashboard-grid">
+                <!-- 최근 예약 -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h2>최근 예약</h2>
+                        <a href="bookings.html" class="view-all">전체 보기 →</a>
+                    </div>
+                    <div class="recent-bookings">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>예약번호</th>
+                                    <th>고객명</th>
+                                    <th>서비스</th>
+                                    <th>예약일시</th>
+                                    <th>상태</th>
+                                    <th>작업</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentBookings">
+                                <tr>
+                                    <td>#CW20240105</td>
+                                    <td>김철수</td>
+                                    <td>입주청소</td>
+                                    <td>2024-01-05 10:00</td>
+                                    <td><span class="status status-pending">대기중</span></td>
+                                    <td>
+                                        <button class="action-btn" onclick="viewBooking('CW20240105')">상세</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#CW20240104</td>
+                                    <td>이영희</td>
+                                    <td>에어컨청소</td>
+                                    <td>2024-01-05 14:00</td>
+                                    <td><span class="status status-confirmed">확정</span></td>
+                                    <td>
+                                        <button class="action-btn" onclick="viewBooking('CW20240104')">상세</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#CW20240103</td>
+                                    <td>박민수</td>
+                                    <td>쇼파청소</td>
+                                    <td>2024-01-05 16:00</td>
+                                    <td><span class="status status-confirmed">확정</span></td>
+                                    <td>
+                                        <button class="action-btn" onclick="viewBooking('CW20240103')">상세</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#CW20240102</td>
+                                    <td>최지은</td>
+                                    <td>유리창청소</td>
+                                    <td>2024-01-06 09:00</td>
+                                    <td><span class="status status-pending">대기중</span></td>
+                                    <td>
+                                        <button class="action-btn" onclick="viewBooking('CW20240102')">상세</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#CW20240101</td>
+                                    <td>정대한</td>
+                                    <td>입주청소</td>
+                                    <td>2024-01-06 13:00</td>
+                                    <td><span class="status status-confirmed">확정</span></td>
+                                    <td>
+                                        <button class="action-btn" onclick="viewBooking('CW20240101')">상세</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- 매출 차트 -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h2>주간 매출 현황</h2>
+                        <select class="period-select">
+                            <option>이번 주</option>
+                            <option>지난 주</option>
+                            <option>이번 달</option>
+                        </select>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 서비스별 통계 & 알림 -->
+            <div class="dashboard-grid">
+                <!-- 서비스별 예약 현황 -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h2>서비스별 예약 현황</h2>
+                    </div>
+                    <div class="service-stats">
+                        <div class="service-stat-item">
+                            <div class="service-info">
+                                <span class="service-icon">🏠</span>
+                                <span class="service-name">입주청소</span>
+                            </div>
+                            <div class="service-bar">
+                                <div class="bar-fill" style="width: 45%; background: #3B82F6;"></div>
+                            </div>
+                            <span class="service-count">45건</span>
+                        </div>
+                        <div class="service-stat-item">
+                            <div class="service-info">
+                                <span class="service-icon">❄️</span>
+                                <span class="service-name">에어컨청소</span>
+                            </div>
+                            <div class="service-bar">
+                                <div class="bar-fill" style="width: 30%; background: #10B981;"></div>
+                            </div>
+                            <span class="service-count">30건</span>
+                        </div>
+                        <div class="service-stat-item">
+                            <div class="service-info">
+                                <span class="service-icon">🛋️</span>
+                                <span class="service-name">쇼파/침구청소</span>
+                            </div>
+                            <div class="service-bar">
+                                <div class="bar-fill" style="width: 15%; background: #6366F1;"></div>
+                            </div>
+                            <span class="service-count">15건</span>
+                        </div>
+                        <div class="service-stat-item">
+                            <div class="service-info">
+                                <span class="service-icon">🪟</span>
+                                <span class="service-name">유리창청소</span>
+                            </div>
+                            <div class="service-bar">
+                                <div class="bar-fill" style="width: 10%; background: #F59E0B;"></div>
+                            </div>
+                            <span class="service-count">10건</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 알림 & 할 일 -->
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <h2>오늘의 할 일</h2>
+                    </div>
+                    <div class="todo-list">
+                        <div class="todo-item">
+                            <input type="checkbox" id="todo1">
+                            <label for="todo1">김철수님 입주청소 예약 확인 전화</label>
+                            <span class="todo-time">10:00</span>
+                        </div>
+                        <div class="todo-item">
+                            <input type="checkbox" id="todo2">
+                            <label for="todo2">이영희님 에어컨청소 방문</label>
+                            <span class="todo-time">14:00</span>
+                        </div>
+                        <div class="todo-item">
+                            <input type="checkbox" id="todo3">
+                            <label for="todo3">박민수님 쇼파청소 방문</label>
+                            <span class="todo-time">16:00</span>
+                        </div>
+                        <div class="todo-item urgent">
+                            <input type="checkbox" id="todo4">
+                            <label for="todo4">내일 예약 고객 리마인더 발송</label>
+                            <span class="todo-time">18:00</span>
+                        </div>
+                        <div class="todo-item">
+                            <input type="checkbox" id="todo5">
+                            <label for="todo5">주간 매출 보고서 작성</label>
+                            <span class="todo-time">20:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Chart.js 라이브러리 (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        // 인증 확인
+        function checkAuth() {
+            const auth = sessionStorage.getItem('adminAuth') || localStorage.getItem('adminAuth');
+            if (!auth) {
+                window.location.href = 'login.html';
+                return false;
+            }
+            return true;
+        }
+        
+        // 로그아웃
+        function logout() {
+            if (confirm('로그아웃 하시겠습니까?')) {
+                sessionStorage.removeItem('adminAuth');
+                localStorage.removeItem('adminAuth');
+                window.location.href = 'login.html';
+            }
+        }
+        
+        // 예약 상세 보기
+        function viewBooking(bookingId) {
+            window.location.href = `booking-detail.html?id=${bookingId}`;
+        }
+        
+        // 현재 날짜 표시
+        function updateDate() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('ko-KR', options);
+        }
+        
+        // 매출 차트 초기화
+        function initSalesChart() {
+            const ctx = document.getElementById('salesChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['월', '화', '수', '목', '금', '토', '일'],
+                    datasets: [{
+                        label: '매출',
+                        data: [2800000, 3200000, 2900000, 3500000, 3800000, 4200000, 2850000],
+                        borderColor: '#3B82F6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y.toLocaleString() + '원';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return (value / 1000000) + 'M';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 페이지 로드시 실행
+        window.addEventListener('load', function() {
+            if (checkAuth()) {
+                updateDate();
+                initSalesChart();
+                
+                // 실시간 시간 업데이트
+                setInterval(updateDate, 60000);
+            }
+        });
+    </script>
+</body>
+</html>

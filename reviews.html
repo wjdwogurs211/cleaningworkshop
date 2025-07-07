@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고객 후기 - 청소공작소</title>
+    <meta name="description" content="청소공작소를 이용하신 고객님들의 생생한 후기를 확인하세요.">
+    
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 스타일 -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/review.css">
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.svg" alt="청소공작소" class="logo">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">홈</a></li>
+                <li><a href="index.html#services" class="nav-link">서비스</a></li>
+                <li><a href="our-story.html" class="nav-link">우리의 이야기</a></li>
+                <li><a href="reviews.html" class="nav-link active">고객후기</a></li>
+                <li><a href="booking.html" class="nav-link">예약하기</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- 리뷰 컨테이너 -->
+    <div class="reviews-container">
+        <!-- 헤더 -->
+        <div class="reviews-header">
+            <h1>고객님들의 생생한 후기</h1>
+            <p>청소공작소와 함께한 경험을 들려주세요</p>
+        </div>
+
+        <!-- 통계 섹션 -->
+        <div class="reviews-stats">
+            <div class="stat-card">
+                <div class="stat-number">4.8</div>
+                <div class="stat-label">평균 평점</div>
+                <div class="review-rating">
+                    <span class="star active">⭐</span>
+                    <span class="star active">⭐</span>
+                    <span class="star active">⭐</span>
+                    <span class="star active">⭐</span>
+                    <span class="star active">⭐</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2,847</div>
+                <div class="stat-label">전체 리뷰</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">만족도</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">95%</div>
+                <div class="stat-label">재이용 의향</div>
+            </div>
+        </div>
+
+        <!-- 필터 섹션 -->
+        <div class="review-filters">
+            <button class="filter-btn active" data-filter="all">전체</button>
+            <button class="filter-btn" data-filter="photo">포토리뷰</button>
+            <button class="filter-btn" data-filter="best">베스트</button>
+            <button class="filter-btn" data-filter="5">⭐ 5점</button>
+            <button class="filter-btn" data-filter="4">⭐ 4점</button>
+            <button class="filter-btn" data-filter="move-in">입주청소</button>
+            <button class="filter-btn" data-filter="ac">에어컨청소</button>
+            <button class="filter-btn" data-filter="sofa">쇼파청소</button>
+            <button class="filter-btn" data-filter="window">유리창청소</button>
+            
+            <select class="filter-select" style="margin-left: auto;">
+                <option value="recent">최신순</option>
+                <option value="rating">평점순</option>
+                <option value="helpful">도움순</option>
+            </select>
+        </div>
+
+        <!-- 리뷰 목록 -->
+        <div class="reviews-grid" id="reviewsGrid">
+            <!-- 베스트 리뷰 1 -->
+            <div class="review-card">
+                <div class="review-header-info">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">👤</div>
+                        <div class="reviewer-details">
+                            <h4>김민수</h4>
+                            <div class="review-meta">
+                                <span>입주청소</span>
+                                <span>•</span>
+                                <span>2024.01.03</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        <span class="star active">⭐</span>
+                        <span class="star active">⭐</span>
+                        <span class="star active">⭐</span>
+                        <span class="star active">⭐</span>
+                        <span class="star active">⭐</span>
+                    </div>
+                </div>
+                
+                <div class="review-content">
+                    <p>
+                        30평 아파트 입주청소를 맡겼는데 정말 만족스러웠습니다! 
+                        화장실 곰팡이까지 말끔하게 제거해주시고, 주방 기름때도 깨끗하게 청소해주셨어요. 
+                        특히 김철수 매니저님이 너무 꼼꼼하게 작업해주셔서 감동받았습니다. 
+                        새 집 같은 기분이 들어요. 가격 대비 정말 훌륭한 서비스였습니다.
+                    </p>
+                </div>
+                
+                <div class="review-photos">
+                    <div class="review-photo">
+                        <img src="images/hero_main.png" alt="청소 후 사진">
+                    </div>
+                    <div class="review-photo">
+                        <img src="images/living_room_detail.png" alt="청소 후 사진">
+                    </div>
+                </div>
+                
+                <div class="review-tags">
+                    <span class="review-tag best">🏆 베스트 리뷰</span>
+                    <span class="review-tag">깔끔한 마무리</span>
+                    <span class="review-tag">친절한 서비스</span>
+                    <span class="review-tag">합리적인 가격</span>
+                </div>
+                
+                <div class="admin-reply">
+                    <div class="admin-reply-header">
+                        <span>🏢</span>
+                        <span>청소공작소</span>
+                    </div>
+                    <p>
+                        김민수 고객님, 소중한 후기 감사합니다! 
+                        새 출발을 깨끗하게 시작하실 수 있도록 도와드릴 수 있어서 기쁩니다. 
+                        앞으로도 최선을 다하는 청소공작소가 되겠습니다. 😊
+                    </p>
+                </div>
+            </div>
+
+            <!-- 리뷰 2 -->
+            <div class="review-card">
+                <div class="review-header-info">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">👤</div>
+                        <div class="reviewer-details">
+                            <h4>이영희</h4>
+                            <div class="review-meta">
+                                <span>에어컨청소</span>
+                                <span>•</span>
+                                <span>2024.01.02</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        <span class="star active">⭐</span>
+                        <span class="star active">⭐</span>
+                        <span class="star active">⭐</span>
+                        <span class="star active">⭐</span>
+                        <span class="star active">⭐</span>
+                    </div>
+                </div>
+                
+                <div class="review-content">
+                    <p>
+                        벽걸이 에어컨 2대 청소 맡겼어요. 분해해서 보니 정말 더러웠는데 
+                        새것처럼 깨끗하게 청소해주셨습니다. 바람도 시원해지고 냄새도 사라졌어요!
+                        전문 장비로 꼼꼼하게 작업하시는 모습이 인상적이었습니다.
+                    </p>
+                </div>
+                
+                <div class="review-tags">
+                    <span class="review-tag">전문적인 서비스</span>
+                    <span class="review-tag">깨끗한 청소</span>
+                </div>
+            </div>
+
+            <!-- 리뷰 3 -->
+            <div class="review-card">
+                <div class="review-header-info">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">👤</div>
+                        <div class="reviewer-details">
+                            <h4>박지훈</h4>
+                            <div class="review-meta">
+                                <span>쇼파청소</span>
+                                <span>•</span>
+                                <span>2023.12.28</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        <span class="star active">⭐</span>
+                        <span class="star active">⭐</span>
+                        <span class="star active">⭐</span>
+                        <span class="star active">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                </div>
+                
+                <div class="review-content">
+                    <p>
+                        5년된 패브릭 소파가 새것처럼 깨끗해졌어요! 
+                        아이들이 흘린 얼룩들도 대부분 제거되었고, 냄새도 상쾌해졌습니다.
+                        다만 오래된 얼룩 일부는 완전히 제거되지 않았지만 전반적으로 만족합니다.
+                    </p>
+                </div>
+                
+                <div class="review-photos">
+                    <div class="review-photo">
+                        <img src="images/home_service.png" alt="청소 후 사진">
+                    </div>
+                </div>
+                
+                <div class="review-tags">
+                    <span class="review-tag">얼룩 제거</span>
+                    <span class="review-tag">친환경 세제</span>
+                </div>
+            </div>
+
+            <!-- 리뷰 4 -->
+            <div class="review-card">
+                <div class="review-header-info">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">👤</div>
+                        <div class="reviewer-details">
+                            <h4>최수진</h4>
+                            <div class="review-meta">
+                                <span>유리창청소</span>
+                                <span>•</span>
+                                <span>2023.12.25</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        <span class="star active">⭐</span>
+                        <span class="star active">⭐</span>
+                        <span class="star active">⭐</span>
+                        <span class="star active">⭐</span>
+                        <span class="star active">⭐</span>
+                    </div>
+                </div>
+                
+                <div class="review-content">
+                    <p>
+                        아파트 20층인데도 안전하게 작업해주셨어요. 
+                        유리창이 정말 투명해져서 전망이 확 트인 느낌입니다!
+                        베란다 유리창까지 모두 깨끗하게 청소해주셔서 감사합니다.
+                        다음에도 꼭 이용하고 싶어요.
+                    </p>
+                </div>
+                
+                <div class="review-tags">
+                    <span class="review-tag">안전한 작업</span>
+                    <span class="review-tag">투명한 유리</span>
+                    <span class="review-tag">재이용 의사</span>
+                </div>
+                
+                <div class="admin-reply">
+                    <div class="admin-reply-header">
+                        <span>🏢</span>
+                        <span>청소공작소</span>
+                    </div>
+                    <p>
+                        최수진 고객님, 만족스러운 후기 남겨주셔서 감사합니다!
+                        고층 작업도 안전하게 진행하는 것이 저희의 원칙입니다.
+                        다음에도 깨끗한 전망을 선물해드리겠습니다! 🪟✨
+                    </p>
+                </div>
+            </div>
+
+            <!-- 리뷰 5 -->
+            <div class="review-card">
+                <div class="review-header-info">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">👤</div>
+                        <div class="reviewer-details">
+                            <h4>정하늘</h4>
+                            <div class="review-meta">
+                                <span>입주청소</span>
+                                <span>•</span>
+                                <span>2023.12.20</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        <span class="star active">⭐</span>
+                        <span class="star active">⭐</span>
+                        <span class="star active">⭐</span>
+                        <span class="star">⭐</span>
+                        <span class="star">⭐</span>
+                    </div>
+                </div>
+                
+                <div class="review-content">
+                    <p>
+                        청소 자체는 깔끔하게 잘 해주셨는데, 약속 시간보다 1시간 늦게 오셨어요.
+                        미리 연락은 주셨지만 일정이 있어서 좀 곤란했습니다.
+                        청소 품질은 좋았지만 시간 약속은 꼭 지켜주셨으면 좋겠어요.
+                    </p>
+                </div>
+                
+                <div class="review-tags">
+                    <span class="review-tag">시간 지연</span>
+                    <span class="review-tag">청소 품질 좋음</span>
+                </div>
+                
+                <div class="admin-reply">
+                    <div class="admin-reply-header">
+                        <span>🏢</span>
+                        <span>청소공작소</span>
+                    </div>
+                    <p>
+                        정하늘 고객님, 불편을 드려 정말 죄송합니다.
+                        시간 약속은 고객님과의 중요한 약속임을 명심하고
+                        개선하도록 하겠습니다. 소중한 피드백 감사드립니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 더보기 버튼 -->
+        <div style="text-align: center; margin-top: 50px;">
+            <button class="btn btn-secondary" id="loadMoreBtn">리뷰 더보기</button>
+        </div>
+    </div>
+
+    <!-- 리뷰 작성 유도 -->
+    <section class="cta" style="margin-top: 80px;">
+        <h2 class="cta-title">청소공작소를 이용하셨나요?</h2>
+        <p class="cta-desc">
+            고객님의 소중한 후기를 들려주세요<br>
+            리뷰 작성시 할인 쿠폰을 드립니다!
+        </p>
+        <a href="review.html" class="btn">리뷰 작성하기</a>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="logo.svg" alt="청소공작소" style="height: 50px; margin-bottom: 20px;">
+                <p>청소의 과학, 깨끗함의 예술</p>
+            </div>
+            <div class="footer-section">
+                <h3>서비스</h3>
+                <p><a href="move-in-cleaning.html">입주청소</a></p>
+                <p><a href="ac-cleaning.html">에어컨청소</a></p>
+                <p><a href="sofa-cleaning.html">쇼파/침구청소</a></p>
+                <p><a href="window-cleaning.html">유리창청소</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>고객센터</h3>
+                <p>📞 1588-0000</p>
+                <p>평일 09:00 - 18:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 청소공작소. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 모바일 메뉴
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // 필터 기능
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // 활성 상태 변경
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 필터링 로직 (실제로는 서버에서 필터링된 데이터 요청)
+                const filter = this.dataset.filter;
+                console.log('필터:', filter);
+                
+                // 리뷰 목록 새로고침
+                // loadReviews(filter);
+            });
+        });
+
+        // 정렬 변경
+        document.querySelector('.filter-select').addEventListener('change', function() {
+            const sort = this.value;
+            console.log('정렬:', sort);
+            // loadReviews(currentFilter, sort);
+        });
+
+        // 더보기 버튼
+        document.getElementById('loadMoreBtn').addEventListener('click', function() {
+            // 실제로는 서버에서 추가 리뷰 로드
+            this.textContent = '로딩 중...';
+            setTimeout(() => {
+                this.textContent = '리뷰 더보기';
+                alert('추가 리뷰를 불러왔습니다.');
+            }, 1000);
+        });
+
+        // 리뷰 로드 (로컬 스토리지에서)
+        function loadLocalReviews() {
+            const reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+            if (reviews.length > 0) {
+                // 최신 리뷰를 맨 위에 추가
+                const reviewsGrid = document.getElementById('reviewsGrid');
+                reviews.forEach(review => {
+                    if (review.status === 'approved' || review.status === 'pending') {
+                        // 리뷰 카드 생성 (간단한 버전)
+                        console.log('저장된 리뷰:', review);
+                    }
+                });
+            }
+        }
+
+        // 페이지 로드시 로컬 리뷰 확인
+        loadLocalReviews();
+    </script>
+</body>
+</html>

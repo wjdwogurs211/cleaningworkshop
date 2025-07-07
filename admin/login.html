@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 로그인 - 청소공작소</title>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/svg+xml" href="../logo.svg">
+    
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- 스타일 -->
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #EBF8FF 0%, #F0FDF4 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-xl);
+            padding: 50px 40px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .login-logo {
+            height: 60px;
+            margin-bottom: 30px;
+        }
+        
+        .login-title {
+            font-size: 1.75rem;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+        
+        .login-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+        
+        .login-form {
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 30px;
+        }
+        
+        .login-btn:hover {
+            background: #1E3A8A;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .login-btn:disabled {
+            background: var(--text-secondary);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .remember-me input {
+            margin-right: 8px;
+        }
+        
+        .remember-me label {
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+        
+        .error-message {
+            background: #FEE2E2;
+            color: #DC2626;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .back-link:hover {
+            color: var(--primary-blue);
+        }
+        
+        /* 로딩 애니메이션 */
+        .loading {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid white;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .login-btn.loading-state .btn-text {
+            display: none;
+        }
+        
+        .login-btn.loading-state .loading {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="../logo.svg" alt="청소공작소" class="login-logo">
+        
+        <h1 class="login-title">관리자 로그인</h1>
+        <p class="login-subtitle">청소공작소 관리 시스템</p>
+        
+        <div class="error-message" id="errorMessage">
+            아이디 또는 비밀번호가 올바르지 않습니다.
+        </div>
+        
+        <form class="login-form" id="loginForm">
+            <div class="form-group">
+                <label class="form-label" for="username">아이디</label>
+                <input type="text" id="username" name="username" class="form-input" 
+                       placeholder="관리자 아이디" required autofocus>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="password">비밀번호</label>
+                <input type="password" id="password" name="password" class="form-input" 
+                       placeholder="비밀번호" required>
+            </div>
+            
+            <div class="remember-me">
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">로그인 상태 유지</label>
+            </div>
+            
+            <button type="submit" class="login-btn" id="loginBtn">
+                <span class="btn-text">로그인</span>
+                <div class="loading"></div>
+            </button>
+        </form>
+        
+        <a href="../index.html" class="back-link">← 홈페이지로 돌아가기</a>
+    </div>
+    
+    <script>
+        // 로그인 폼 처리
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+            const loginBtn = document.getElementById('loginBtn');
+            const errorMsg = document.getElementById('errorMessage');
+            
+            // 에러 메시지 숨기기
+            errorMsg.style.display = 'none';
+            
+            // 로딩 상태
+            loginBtn.classList.add('loading-state');
+            loginBtn.disabled = true;
+            
+            // 실제 환경에서는 서버로 인증 요청
+            // 여기서는 시뮬레이션 (admin/1234로 로그인)
+            setTimeout(() => {
+                if (username === 'admin' && password === '1234') {
+                    // 로그인 성공
+                    const adminData = {
+                        username: username,
+                        loginTime: new Date().toISOString(),
+                        remember: remember
+                    };
+                    
+                    // 세션 저장
+                    sessionStorage.setItem('adminAuth', JSON.stringify(adminData));
+                    
+                    // 기억하기 체크시 로컬 스토리지에도 저장
+                    if (remember) {
+                        localStorage.setItem('adminAuth', JSON.stringify(adminData));
+                    }
+                    
+                    // 대시보드로 이동
+                    window.location.href = 'dashboard.html';
+                } else {
+                    // 로그인 실패
+                    errorMsg.style.display = 'block';
+                    loginBtn.classList.remove('loading-state');
+                    loginBtn.disabled = false;
+                    
+                    // 비밀번호 필드 초기화
+                    document.getElementById('password').value = '';
+                    document.getElementById('password').focus();
+                }
+            }, 1500);
+        });
+        
+        // 페이지 로드시 저장된 로그인 확인
+        window.addEventListener('load', function() {
+            const savedAuth = localStorage.getItem('adminAuth');
+            if (savedAuth) {
+                const authData = JSON.parse(savedAuth);
+                // 자동 로그인
+                window.location.href = 'dashboard.html';
+            }
+        });
+    </script>
+</body>
+</html>

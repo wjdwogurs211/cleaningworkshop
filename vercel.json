@@ -1,12 +1,4 @@
 {
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/cleaning_workshop/$1"
-    },
-    {
-      "source": "/",
-      "destination": "/cleaning_workshop/index.html"
-    }
-  ]
+  "cleanUrls": true,
+  "trailingSlash": false
 }

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약하기 - 청소공작소</title>
+    <meta name="description" content="청소공작소 온라인 예약 시스템. 원하는 날짜와 시간에 간편하게 예약하세요.">
+    
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 스타일 -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/booking.css">
+    <link rel="stylesheet" href="css/calendar.css">
+    
+    <!-- 토스페이먼츠 SDK -->
+    <script src="https://js.tosspayments.com/v1/payment"></script>
+    
+    <!-- API 연동 -->
+    <script src="../js/api.js"></script>
+    <script src="../js/payment.js"></script>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.svg" alt="청소공작소" class="logo">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">홈</a></li>
+                <li><a href="index.html#services" class="nav-link">서비스</a></li>
+                <li><a href="our-story.html" class="nav-link">우리의 이야기</a></li>
+                <li><a href="reviews.html" class="nav-link">고객후기</a></li>
+                <li><a href="booking.html" class="nav-link active">예약하기</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- 예약 컨테이너 -->
+    <div class="booking-container">
+        <h1 class="booking-title">청소 서비스 예약</h1>
+        <p class="booking-subtitle">간편하게 예약하고 깨끗한 공간을 만나보세요</p>
+        
+        <!-- 진행 상태 표시 -->
+        <div class="progress-bar">
+            <div class="progress-step active" data-step="1">
+                <div class="step-number">1</div>
+                <div class="step-label">서비스 선택</div>
+            </div>
+            <div class="progress-step" data-step="2">
+                <div class="step-number">2</div>
+                <div class="step-label">상세 정보</div>
+            </div>
+            <div class="progress-step" data-step="3">
+                <div class="step-number">3</div>
+                <div class="step-label">날짜/시간</div>
+            </div>
+            <div class="progress-step" data-step="4">
+                <div class="step-number">4</div>
+                <div class="step-label">고객 정보</div>
+            </div>
+            <div class="progress-step" data-step="5">
+                <div class="step-number">5</div>
+                <div class="step-label">확인/결제</div>
+            </div>
+        </div>
+
+        <!-- 예약 폼 -->
+        <form id="bookingForm" class="booking-form">
+            <!-- Step 1: 서비스 선택 -->
+            <div class="form-step active" data-step="1">
+                <h2>어떤 서비스가 필요하신가요?</h2>
+                <div class="service-selection">
+                    <label class="service-option">
+                        <input type="radio" name="service" value="move-in" data-price="350000">
+                        <div class="service-card-select">
+                            <div class="service-icon">🏠</div>
+                            <h3>입주청소</h3>
+                            <p>새 집처럼 깨끗한 청소</p>
+                            <span class="price">30평 기준 35만원~</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option">
+                        <input type="radio" name="service" value="ac" data-price="50000">
+                        <div class="service-card-select">
+                            <div class="service-icon">❄️</div>
+                            <h3>에어컨청소</h3>
+                            <p>전문 분해청소</p>
+                            <span class="price">벽걸이 5만원~</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option">
+                        <input type="radio" name="service" value="sofa" data-price="80000">
+                        <div class="service-card-select">
+                            <div class="service-icon">🛋️</div>
+                            <h3>쇼파/침구청소</h3>
+                            <p>진드기 제거 전문</p>
+                            <span class="price">3인 쇼파 8만원~</span>
+                        </div>
+                    </label>
+                    
+                    <label class="service-option">
+                        <input type="radio" name="service" value="window" data-price="100000">
+                        <div class="service-card-select">
+                            <div class="service-icon">🪟</div>
+                            <h3>유리창청소</h3>
+                            <p>투명한 깨끗함</p>
+                            <span class="price">30평 기준 10만원~</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Step 2: 상세 정보 -->
+            <div class="form-step" data-step="2">
+                <h2>상세 정보를 입력해주세요</h2>
+                
+                <!-- 입주청소 상세 -->
+                <div class="detail-section" id="move-in-details" style="display: none;">
+                    <div class="form-group">
+                        <label>평수</label>
+                        <select name="move-in-size" class="form-control">
+                            <option value="">선택하세요</option>
+                            <option value="20">20평 이하</option>
+                            <option value="30">21~30평</option>
+                            <option value="40">31~40평</option>
+                            <option value="50">41~50평</option>
+                            <option value="50+">50평 초과</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>추가 옵션</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="move-in-options" value="베란다확장"> 베란다 확장</label>
+                            <label><input type="checkbox" name="move-in-options" value="복층"> 복층 구조</label>
+                            <label><input type="checkbox" name="move-in-options" value="곰팡이제거"> 곰팡이 제거</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 에어컨청소 상세 -->
+                <div class="detail-section" id="ac-details" style="display: none;">
+                    <div class="form-group">
+                        <label>에어컨 종류</label>
+                        <select name="ac-type" class="form-control">
+                            <option value="">선택하세요</option>
+                            <option value="wall">벽걸이</option>
+                            <option value="stand">스탠드</option>
+                            <option value="ceiling">천장형(시스템)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>대수</label>
+                        <input type="number" name="ac-count" min="1" max="10" value="1" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label><input type="checkbox" name="ac-outdoor" value="실외기"> 실외기 청소 포함 (+3만원)</label>
+                    </div>
+                </div>
+
+                <!-- 쇼파/침구청소 상세 -->
+                <div class="detail-section" id="sofa-details" style="display: none;">
+                    <div class="form-group">
+                        <label>청소 항목 (복수 선택 가능)</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="sofa-items" value="쇼파"> 쇼파</label>
+                            <label><input type="checkbox" name="sofa-items" value="매트리스"> 매트리스</label>
+                            <label><input type="checkbox" name="sofa-items" value="이불"> 이불/베개</label>
+                            <label><input type="checkbox" name="sofa-items" value="카펫"> 카펫/러그</label>
+                        </div>
+                    </div>
+                    <div class="form-group" id="sofa-size-select" style="display: none;">
+                        <label>쇼파 크기</label>
+                        <select name="sofa-size" class="form-control">
+                            <option value="">선택하세요</option>
+                            <option value="1인">1인용</option>
+                            <option value="2인">2인용</option>
+                            <option value="3인">3인용</option>
+                            <option value="4인이상">4인용 이상</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 유리창청소 상세 -->
+                <div class="detail-section" id="window-details" style="display: none;">
+                    <div class="form-group">
+                        <label>건물 유형</label>
+                        <select name="window-building" class="form-control">
+                            <option value="">선택하세요</option>
+                            <option value="아파트">아파트</option>
+                            <option value="주택">단독주택</option>
+                            <option value="사무실">사무실</option>
+                            <option value="상가">상가</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>층수</label>
+                        <input type="number" name="window-floor" min="1" max="50" class="form-control" placeholder="예: 5">
+                    </div>
+                    <div class="form-group">
+                        <label>창문 개수 (대략적)</label>
+                        <select name="window-count" class="form-control">
+                            <option value="">선택하세요</option>
+                            <option value="10개이하">10개 이하</option>
+                            <option value="11-20개">11~20개</option>
+                            <option value="21-30개">21~30개</option>
+                            <option value="30개초과">30개 초과</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>특별 요청사항 (선택)</label>
+                    <textarea name="special-request" class="form-control" rows="3" 
+                              placeholder="특별히 신경써주셨으면 하는 부분이 있다면 알려주세요"></textarea>
+                </div>
+            </div>
+
+            <!-- Step 3: 날짜/시간 선택 -->
+            <div class="form-step" data-step="3">
+                <h2>언제 서비스를 받으시겠어요?</h2>
+                
+                <!-- 새로운 캘린더 시스템 -->
+                <div id="calendarSection"></div>
+                
+                <div class="info-box">
+                    <p>💡 서비스 가능 시간: 평일 오전 9시 ~ 오후 6시</p>
+                    <p>💡 주말/공휴일 서비스는 전화 문의 부탁드립니다</p>
+                    <p>📅 최대 30일 후까지 예약 가능합니다</p>
+                </div>
+            </div>
+
+            <!-- Step 4: 고객 정보 -->
+            <div class="form-step" data-step="4">
+                <h2>고객님 정보를 입력해주세요</h2>
+                
+                <div class="customer-info">
+                    <div class="form-group">
+                        <label>이름 <span class="required">*</span></label>
+                        <input type="text" name="customer-name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>연락처 <span class="required">*</span></label>
+                        <input type="tel" name="customer-phone" class="form-control" 
+                               placeholder="010-0000-0000" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>이메일</label>
+                        <input type="email" name="customer-email" class="form-control" 
+                               placeholder="example@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>서비스 주소 <span class="required">*</span></label>
+                        <input type="text" name="service-address" class="form-control" 
+                               placeholder="도로명 주소" required>
+                        <input type="text" name="service-address-detail" class="form-control" 
+                               placeholder="상세 주소 (동/호수 등)" style="margin-top: 10px;">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>출입 방법</label>
+                        <select name="entry-method" class="form-control">
+                            <option value="재택">재택 (집에 계심)</option>
+                            <option value="비밀번호">현관 비밀번호</option>
+                            <option value="경비실">경비실 열쇠 보관</option>
+                            <option value="기타">기타</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="entry-detail" style="display: none;">
+                        <label>출입 방법 상세</label>
+                        <input type="text" name="entry-detail" class="form-control" 
+                               placeholder="비밀번호 또는 기타 출입 방법">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: 확인 및 결제 -->
+            <div class="form-step" data-step="5">
+                <h2>예약 내용을 확인해주세요</h2>
+                
+                <div class="booking-summary">
+                    <h3>예약 정보</h3>
+                    <div class="summary-content" id="bookingSummary">
+                        <!-- 동적으로 생성될 예약 요약 정보 -->
+                    </div>
+                    
+                    <div class="price-summary">
+                        <div class="price-row">
+                            <span>기본 요금</span>
+                            <span id="basePrice">0원</span>
+                        </div>
+                        <div class="price-row" id="additionalPrice" style="display: none;">
+                            <span>추가 요금</span>
+                            <span id="addPrice">0원</span>
+                        </div>
+                        <div class="price-row total">
+                            <span>총 결제금액</span>
+                            <span id="totalPrice">0원</span>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-method">
+                        <h3>결제 방법</h3>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="card" checked>
+                            <span>신용/체크카드</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="transfer">
+                            <span>계좌이체</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="cash">
+                            <span>현장 결제</span>
+                        </label>
+                    </div>
+                    
+                    <div class="terms-agreement">
+                        <label>
+                            <input type="checkbox" name="terms" required>
+                            <span>서비스 이용약관 및 개인정보 처리방침에 동의합니다</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 버튼 영역 -->
+            <div class="form-buttons">
+                <button type="button" class="btn btn-secondary" id="prevBtn" style="display: none;">이전</button>
+                <button type="button" class="btn btn-primary" id="nextBtn">다음</button>
+                <button type="submit" class="btn btn-primary" id="submitBtn" style="display: none;">예약 완료</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="logo.svg" alt="청소공작소" style="height: 50px; margin-bottom: 20px;">
+                <p>청소의 과학, 깨끗함의 예술</p>
+            </div>
+            <div class="footer-section">
+                <h3>고객센터</h3>
+                <p>📞 1588-0000</p>
+                <p>평일 09:00 - 18:00</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 청소공작소. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/notification-system.js"></script>
+    <script src="js/calendar-booking.js"></script>
+    <script src="js/booking.js"></script>
+</body>
+</html>

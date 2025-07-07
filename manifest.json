@@ -1,0 +1,105 @@
+{
+  "name": "청소공작소 - 청소의 과학, 깨끗함의 예술",
+  "short_name": "청소공작소",
+  "description": "전문 청소 서비스 예약 앱 - 입주청소, 에어컨청소, 쇼파청소, 유리창청소",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#1e40af",
+  "background_color": "#ffffff",
+  "scope": "/",
+  "lang": "ko-KR",
+  "categories": ["lifestyle", "productivity"],
+  "icons": [
+    {
+      "src": "/images/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/images/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/screenshot-1.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "label": "청소공작소 홈 화면"
+    },
+    {
+      "src": "/images/screenshot-2.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "label": "간편 예약 시스템"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "예약하기",
+      "short_name": "예약",
+      "description": "청소 서비스 예약하기",
+      "url": "/booking.html",
+      "icons": [
+        {
+          "src": "/images/icon-booking-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "예약 확인",
+      "short_name": "내 예약",
+      "description": "예약 내역 확인하기",
+      "url": "/my-bookings.html",
+      "icons": [
+        {
+          "src": "/images/icon-calendar-96x96.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false,
+  "related_applications": []
+}

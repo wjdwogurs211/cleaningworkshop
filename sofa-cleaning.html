@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쇼파/침구청소 - 청소공작소</title>
+    <meta name="description" content="집먼지 진드기 완벽 제거! 전문 장비로 쇼파와 침구를 새것처럼 깨끗하게 만들어드립니다.">
+    
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 스타일 -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .service-hero {
+            background: linear-gradient(135deg, #E9D5FF 0%, #F3E8FF 50%, #DDD6FE 100%);
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-hero::before {
+            content: '🛋️';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.1;
+            top: -50px;
+            left: 10%;
+            transform: rotate(15deg);
+        }
+        
+        .service-hero h1 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .problem-solution {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+            align-items: center;
+        }
+        
+        .problem-box {
+            background: #FEE2E2;
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .solution-box {
+            background: #D1FAE5;
+            border-radius: 16px;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .box-label {
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .problem-box .box-label {
+            color: #DC2626;
+        }
+        
+        .solution-box .box-label {
+            color: #059669;
+        }
+        
+        .item-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .item-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s;
+        }
+        
+        .item-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .item-image {
+            height: 200px;
+            background: var(--bg-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        
+        .item-content {
+            padding: 30px;
+        }
+        
+        .item-content h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+        
+        .item-price {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+        
+        .item-features {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .item-features li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .item-features li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+        }
+        
+        .cleaning-tech {
+            background: var(--bg-light);
+            padding: 80px 20px;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+        
+        .tech-item {
+            text-align: center;
+        }
+        
+        .tech-icon {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 3rem;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .tech-item h4 {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+        
+        .tech-item p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .allergen-info {
+            background: #FEF3C7;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 800px;
+            margin: 40px auto;
+            text-align: center;
+        }
+        
+        .allergen-info h3 {
+            color: #92400E;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .allergen-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #F59E0B;
+        }
+        
+        .stat-label {
+            color: #92400E;
+            margin-top: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .service-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .problem-solution {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .allergen-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.svg" alt="청소공작소" class="logo">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">홈</a></li>
+                <li><a href="move-in-cleaning.html" class="nav-link">입주청소</a></li>
+                <li><a href="ac-cleaning.html" class="nav-link">에어컨청소</a></li>
+                <li><a href="sofa-cleaning.html" class="nav-link">쇼파/침구청소</a></li>
+                <li><a href="window-cleaning.html" class="nav-link">유리창청소</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- 서비스 히어로 -->
+    <section class="service-hero">
+        <h1>🛋️ 쇼파/침구청소 서비스</h1>
+        <p class="hero-subtitle">
+            집먼지 진드기와 알레르기 유발 물질 완벽 제거<br>
+            가족의 건강을 지키는 전문 청소 서비스입니다
+        </p>
+    </section>
+
+    <!-- 문제와 해결 -->
+    <section style="padding: 80px 20px;">
+        <div class="section-header">
+            <h2 class="section-title">쇼파와 침구, 정말 깨끗할까요?</h2>
+            <p class="section-desc">
+                매일 사용하는 쇼파와 침구에 숨어있는 위험을 제거합니다
+            </p>
+        </div>
+        <div class="problem-solution">
+            <div class="problem-box">
+                <span class="box-label">문제점</span>
+                <h3 style="margin-bottom: 20px;">보이지 않는 위험</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 15px;">🦠 집먼지 진드기 200만 마리 서식</li>
+                    <li style="margin-bottom: 15px;">🤧 알레르기 유발 물질 축적</li>
+                    <li style="margin-bottom: 15px;">💦 땀과 피지로 인한 세균 번식</li>
+                    <li style="margin-bottom: 15px;">🦨 제거되지 않는 악취</li>
+                    <li style="margin-bottom: 15px;">🎨 얼룩과 변색으로 인한 외관 손상</li>
+                </ul>
+            </div>
+            <div class="solution-box">
+                <span class="box-label">해결책</span>
+                <h3 style="margin-bottom: 20px;">청소공작소의 솔루션</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 15px;">✨ 99.9% 집먼지 진드기 제거</li>
+                    <li style="margin-bottom: 15px;">🌿 친환경 살균 소독</li>
+                    <li style="margin-bottom: 15px;">💨 고온 스팀 살균 청소</li>
+                    <li style="margin-bottom: 15px;">🌸 탈취 및 향균 처리</li>
+                    <li style="margin-bottom: 15px;">🎯 얼룩 제거 및 복원</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 청소 가능 품목 -->
+    <section class="cleaning-tech">
+        <div class="section-header">
+            <h2 class="section-title">청소 가능 품목</h2>
+            <p class="section-desc">
+                다양한 재질과 종류의 쇼파와 침구를 전문적으로 청소합니다
+            </p>
+        </div>
+        <div class="item-grid">
+            <!-- 쇼파 -->
+            <div class="item-card">
+                <div class="item-image">🛋️</div>
+                <div class="item-content">
+                    <h3>쇼파 청소</h3>
+                    <p class="item-price">3인 기준 8만원~</p>
+                    <ul class="item-features">
+                        <li>패브릭, 가죽, 인조가죽 모두 가능</li>
+                        <li>쿠션 분리 세척</li>
+                        <li>프레임 내부까지 청소</li>
+                        <li>얼룩 및 오염 제거</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 매트리스 -->
+            <div class="item-card">
+                <div class="item-image">🛏️</div>
+                <div class="item-content">
+                    <h3>매트리스 청소</h3>
+                    <p class="item-price">퀸 사이즈 7만원~</p>
+                    <ul class="item-features">
+                        <li>양면 고온 스팀 살균</li>
+                        <li>진드기 및 알레르기 물질 제거</li>
+                        <li>습기 제거 및 건조</li>
+                        <li>얼룩 및 냄새 제거</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 이불 -->
+            <div class="item-card">
+                <div class="item-image">🧺</div>
+                <div class="item-content">
+                    <h3>이불/베개 청소</h3>
+                    <p class="item-price">이불 3만원~</p>
+                    <ul class="item-features">
+                        <li>구스, 솜, 극세사 등 모든 재질</li>
+                        <li>전문 세탁 및 살균</li>
+                        <li>보송보송한 건조</li>
+                        <li>항균 코팅 처리</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 카펫 -->
+            <div class="item-card">
+                <div class="item-image">🟫</div>
+                <div class="item-content">
+                    <h3>카펫/러그 청소</h3>
+                    <p class="item-price">평당 2만원~</p>
+                    <ul class="item-features">
+                        <li>심층 먼지 제거</li>
+                        <li>얼룩 및 오염 처리</li>
+                        <li>털 복원 작업</li>
+                        <li>방충 처리 옵션</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 청소 기술 -->
+    <section style="padding: 80px 20px;">
+        <div class="section-header">
+            <h2 class="section-title">최첨단 청소 기술</h2>
+            <p class="section-desc">
+                과학적이고 체계적인 방법으로 완벽한 청결을 실현합니다
+            </p>
+        </div>
+        <div class="tech-grid">
+            <div class="tech-item">
+                <div class="tech-icon">🔥</div>
+                <h4>고온 스팀 살균</h4>
+                <p>180도 고온 스팀으로 세균과 진드기를 99.9% 제거합니다</p>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">💧</div>
+                <h4>습식 세척</h4>
+                <p>전문 세제와 장비로 깊숙한 오염까지 제거합니다</p>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">🌬️</div>
+                <h4>급속 건조</h4>
+                <p>전문 건조 장비로 빠르고 완벽하게 건조시킵니다</p>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">🛡️</div>
+                <h4>항균 코팅</h4>
+                <p>지속적인 항균 효과로 청결함을 오래 유지합니다</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 알레르기 정보 -->
+    <section style="padding: 40px 20px;">
+        <div class="allergen-info">
+            <h3>🤧 알레르기로 고생하시나요?</h3>
+            <p>
+                매트리스에는 평균 200만 마리의 집먼지 진드기가 서식하며,<br>
+                이들이 배출하는 분비물과 사체가 알레르기의 주요 원인입니다.
+            </p>
+            <div class="allergen-stats">
+                <div class="stat-item">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">진드기 제거율</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">87%</div>
+                    <div class="stat-label">알레르기 개선</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">6개월</div>
+                    <div class="stat-label">효과 지속기간</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 프로세스 -->
+    <section class="features">
+        <div class="section-header">
+            <h2 class="section-title">청소 프로세스</h2>
+            <p class="section-desc">
+                체계적인 5단계 프로세스로 새것 같은 깨끗함을 선사합니다
+            </p>
+        </div>
+        <div class="process-timeline" style="max-width: 1000px; margin: 40px auto;">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>상태 점검</h3>
+                <p>재질 확인 및 오염도 측정</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>사전 처리</h3>
+                <p>얼룩 제거 및 전처리 작업</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>본 청소</h3>
+                <p>고온 스팀 및 습식 청소</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>살균 소독</h3>
+                <p>UV 살균 및 항균 처리</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <h3>건조 마무리</h3>
+                <p>완벽한 건조 및 검수</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2 class="cta-title">건강한 수면, 편안한 휴식</h2>
+        <p class="cta-desc">
+            청소공작소의 전문 청소로 가족의 건강을 지키세요<br>
+            지금 예약하시면 10% 할인 혜택을 드립니다
+        </p>
+        <div class="hero-buttons">
+            <a href="tel:1588-0000" class="btn">📞 전화 예약</a>
+            <a href="#quote" class="btn" style="background: var(--accent-green);">할인 견적 받기</a>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="logo.svg" alt="청소공작소" style="height: 50px; margin-bottom: 20px;">
+                <p>청소의 과학, 깨끗함의 예술</p>
+            </div>
+            <div class="footer-section">
+                <h3>서비스</h3>
+                <p><a href="move-in-cleaning.html">입주청소</a></p>
+                <p><a href="ac-cleaning.html">에어컨청소</a></p>
+                <p><a href="sofa-cleaning.html">쇼파/침구청소</a></p>
+                <p><a href="window-cleaning.html">유리창청소</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>고객센터</h3>
+                <p>📞 1588-0000</p>
+                <p>평일 09:00 - 18:00</p>
+            </div>
+            <div class="footer-section">
+                <h3>회사정보</h3>
+                <p>청소공작소</p>
+                <p>사업자등록번호: 123-45-67890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 청소공작소. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 모바일 메뉴
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // 애니메이션
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.item-card, .tech-item, .process-step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

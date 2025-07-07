@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>청소공작소 PWA 에셋 생성기</title>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        h1, h2 {
+            color: #1e40af;
+            text-align: center;
+        }
+        .section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .asset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .asset-container {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        canvas {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            max-width: 100%;
+        }
+        button {
+            background: #1e40af;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #1e3a8a;
+        }
+        .download-all {
+            background: #10b981;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .code-block {
+            background: #1f2937;
+            color: #f3f4f6;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        pre {
+            margin: 0;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>청소공작소 PWA 에셋 생성기</h1>
+
+    <!-- 스플래시 스크린 섹션 -->
+    <div class="section">
+        <h2>iOS 스플래시 스크린</h2>
+        <p>iOS 기기에서 앱 실행시 보여지는 스플래시 스크린입니다.</p>
+        <div class="asset-grid" id="splashGrid"></div>
+        <button class="download-all" onclick="downloadAllSplashes()">모든 스플래시 스크린 다운로드</button>
+    </div>
+
+    <!-- 스크린샷 섹션 -->
+    <div class="section">
+        <h2>앱 스토어용 스크린샷</h2>
+        <p>PWA 설치 프롬프트에 표시될 스크린샷입니다.</p>
+        <div class="asset-grid" id="screenshotGrid"></div>
+        <button class="download-all" onclick="downloadAllScreenshots()">모든 스크린샷 다운로드</button>
+    </div>
+
+    <!-- 메타 태그 섹션 -->
+    <div class="section">
+        <h2>추가 메타 태그</h2>
+        <p>index.html의 &lt;head&gt; 섹션에 추가할 iOS 스플래시 스크린 메타 태그입니다.</p>
+        <div class="code-block">
+            <pre id="metaTags"></pre>
+        </div>
+        <button onclick="copyMetaTags()">메타 태그 복사</button>
+    </div>
+
+    <script>
+        // iOS 스플래시 스크린 크기
+        const splashSizes = [
+            { width: 640, height: 1136, device: 'iPhone SE' },
+            { width: 750, height: 1334, device: 'iPhone 8' },
+            { width: 828, height: 1792, device: 'iPhone 11' },
+            { width: 1125, height: 2436, device: 'iPhone X/XS' },
+            { width: 1242, height: 2688, device: 'iPhone XS Max' },
+            { width: 1170, height: 2532, device: 'iPhone 12/13' },
+            { width: 1284, height: 2778, device: 'iPhone 12/13 Pro Max' },
+            { width: 1179, height: 2556, device: 'iPhone 14' },
+            { width: 1290, height: 2796, device: 'iPhone 14 Pro Max' }
+        ];
+
+        // 스크린샷 크기
+        const screenshotSizes = [
+            { width: 1080, height: 1920, name: 'mobile-portrait' },
+            { width: 1920, height: 1080, name: 'mobile-landscape' }
+        ];
+
+        // 스플래시 스크린 그리기
+        function drawSplashScreen(canvas, width, height) {
+            const ctx = canvas.getContext('2d');
+            canvas.width = width;
+            canvas.height = height;
+
+            // 배경 그라데이션
+            const gradient = ctx.createLinearGradient(0, 0, 0, height);
+            gradient.addColorStop(0, '#1e40af');
+            gradient.addColorStop(1, '#3b82f6');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+
+            // 패턴 배경
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+            for (let i = 0; i < 20; i++) {
+                ctx.beginPath();
+                ctx.arc(
+                    Math.random() * width,
+                    Math.random() * height,
+                    Math.random() * 100 + 50,
+                    0,
+                    Math.PI * 2
+                );
+                ctx.fill();
+            }
+
+            // 중앙 로고
+            const logoSize = Math.min(width, height) * 0.3;
+            ctx.save();
+            ctx.translate(width/2, height/2);
+
+            // 로고 배경 원
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.beginPath();
+            ctx.arc(0, 0, logoSize * 0.6, 0, Math.PI * 2);
+            ctx.fill();
+
+            // 플라스크 아이콘
+            ctx.fillStyle = '#ffffff';
+            const flaskSize = logoSize * 0.5;
+            
+            // 플라스크 그리기 (아이콘과 동일한 로직)
+            ctx.beginPath();
+            const neckWidth = flaskSize * 0.3;
+            const neckHeight = flaskSize * 0.4;
+            
+            ctx.moveTo(-neckWidth/2, -flaskSize/2);
+            ctx.lineTo(-neckWidth/2, -flaskSize/2 + neckHeight);
+            ctx.quadraticCurveTo(-flaskSize/2, -flaskSize/2 + neckHeight, -flaskSize/2, 0);
+            ctx.arc(0, flaskSize/4, flaskSize/2, Math.PI, 0, false);
+            ctx.quadraticCurveTo(flaskSize/2, -flaskSize/2 + neckHeight, neckWidth/2, -flaskSize/2 + neckHeight);
+            ctx.lineTo(neckWidth/2, -flaskSize/2);
+            ctx.closePath();
+            ctx.fill();
+
+            // 액체
+            ctx.fillStyle = '#10b981';
+            ctx.beginPath();
+            ctx.arc(0, flaskSize/4, flaskSize/2 * 0.8, 0, Math.PI, false);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.restore();
+
+            // 텍스트
+            ctx.fillStyle = '#ffffff';
+            ctx.font = `bold ${Math.min(width, height) * 0.06}px sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.fillText('청소공작소', width/2, height * 0.7);
+            
+            ctx.font = `${Math.min(width, height) * 0.03}px sans-serif`;
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.fillText('청소의 과학, 깨끗함의 예술', width/2, height * 0.75);
+        }
+
+        // 스크린샷 그리기
+        function drawScreenshot(canvas, width, height, type) {
+            const ctx = canvas.getContext('2d');
+            canvas.width = width;
+            canvas.height = height;
+
+            if (type === 'mobile-portrait') {
+                // 모바일 세로 스크린샷
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, width, height);
+
+                // 상단 바
+                ctx.fillStyle = '#1e40af';
+                ctx.fillRect(0, 0, width, 100);
+
+                // 로고
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 36px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('청소공작소', width/2, 60);
+
+                // 메인 컨텐츠
+                ctx.fillStyle = '#f8f9fa';
+                ctx.fillRect(50, 150, width - 100, 400);
+                
+                // 서비스 카드들
+                const services = ['입주청소', '에어컨청소', '쇼파청소', '유리창청소'];
+                const cardHeight = 150;
+                const cardMargin = 30;
+                
+                services.forEach((service, index) => {
+                    const y = 650 + (cardHeight + cardMargin) * index;
+                    
+                    // 카드 배경
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(50, y, width - 100, cardHeight);
+                    
+                    // 카드 테두리
+                    ctx.strokeStyle = '#e5e7eb';
+                    ctx.strokeRect(50, y, width - 100, cardHeight);
+                    
+                    // 서비스 이름
+                    ctx.fillStyle = '#1e40af';
+                    ctx.font = 'bold 28px sans-serif';
+                    ctx.textAlign = 'left';
+                    ctx.fillText(service, 80, y + 50);
+                    
+                    // 가격
+                    ctx.fillStyle = '#6b7280';
+                    ctx.font = '24px sans-serif';
+                    ctx.fillText('전문 서비스', 80, y + 90);
+                    
+                    // 예약 버튼
+                    ctx.fillStyle = '#10b981';
+                    ctx.fillRect(width - 200, y + 50, 120, 50);
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = '20px sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('예약하기', width - 140, y + 80);
+                });
+
+                // 하단 CTA
+                ctx.fillStyle = '#1e40af';
+                ctx.fillRect(50, height - 200, width - 100, 100);
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 32px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('지금 바로 예약하세요!', width/2, height - 140);
+            }
+        }
+
+        // 스플래시 스크린 생성
+        function generateSplashScreens() {
+            const container = document.getElementById('splashGrid');
+            container.innerHTML = '';
+
+            splashSizes.forEach(size => {
+                const div = document.createElement('div');
+                div.className = 'asset-container';
+
+                const canvas = document.createElement('canvas');
+                drawSplashScreen(canvas, size.width, size.height);
+
+                const label = document.createElement('div');
+                label.textContent = `${size.device} (${size.width}×${size.height})`;
+                label.style.marginBottom = '10px';
+
+                const downloadBtn = document.createElement('button');
+                downloadBtn.textContent = '다운로드';
+                downloadBtn.onclick = () => {
+                    canvas.toBlob(blob => {
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `splash-${size.width}x${size.height}.png`;
+                        a.click();
+                        URL.revokeObjectURL(url);
+                    });
+                };
+
+                div.appendChild(label);
+                div.appendChild(canvas);
+                div.appendChild(downloadBtn);
+                container.appendChild(div);
+            });
+        }
+
+        // 스크린샷 생성
+        function generateScreenshots() {
+            const container = document.getElementById('screenshotGrid');
+            container.innerHTML = '';
+
+            screenshotSizes.forEach(size => {
+                const div = document.createElement('div');
+                div.className = 'asset-container';
+
+                const canvas = document.createElement('canvas');
+                drawScreenshot(canvas, size.width, size.height, size.name);
+
+                const label = document.createElement('div');
+                label.textContent = `${size.name} (${size.width}×${size.height})`;
+                label.style.marginBottom = '10px';
+
+                const downloadBtn = document.createElement('button');
+                downloadBtn.textContent = '다운로드';
+                downloadBtn.onclick = () => {
+                    canvas.toBlob(blob => {
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `screenshot-${size.name}.png`;
+                        a.click();
+                        URL.revokeObjectURL(url);
+                    });
+                };
+
+                div.appendChild(label);
+                div.appendChild(canvas);
+                div.appendChild(downloadBtn);
+                container.appendChild(div);
+            });
+        }
+
+        // 메타 태그 생성
+        function generateMetaTags() {
+            let tags = '';
+            splashSizes.forEach(size => {
+                tags += `<link rel="apple-touch-startup-image" href="/images/splash-${size.width}x${size.height}.png" media="(device-width: ${size.width/2}px) and (device-height: ${size.height/2}px) and (-webkit-device-pixel-ratio: 2)">\n`;
+            });
+            document.getElementById('metaTags').textContent = tags;
+        }
+
+        // 메타 태그 복사
+        function copyMetaTags() {
+            const text = document.getElementById('metaTags').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('메타 태그가 클립보드에 복사되었습니다!');
+            });
+        }
+
+        // 모든 스플래시 스크린 다운로드
+        async function downloadAllSplashes() {
+            for (const size of splashSizes) {
+                const canvas = document.createElement('canvas');
+                drawSplashScreen(canvas, size.width, size.height);
+                
+                await new Promise(resolve => {
+                    canvas.toBlob(blob => {
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `splash-${size.width}x${size.height}.png`;
+                        a.click();
+                        URL.revokeObjectURL(url);
+                        setTimeout(resolve, 200);
+                    });
+                });
+            }
+            alert('모든 스플래시 스크린이 다운로드되었습니다!');
+        }
+
+        // 모든 스크린샷 다운로드
+        async function downloadAllScreenshots() {
+            for (const size of screenshotSizes) {
+                const canvas = document.createElement('canvas');
+                drawScreenshot(canvas, size.width, size.height, size.name);
+                
+                await new Promise(resolve => {
+                    canvas.toBlob(blob => {
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `screenshot-${size.name}.png`;
+                        a.click();
+                        URL.revokeObjectURL(url);
+                        setTimeout(resolve, 200);
+                    });
+                });
+            }
+            alert('모든 스크린샷이 다운로드되었습니다!');
+        }
+
+        // 초기 로드
+        generateSplashScreens();
+        generateScreenshots();
+        generateMetaTags();
+    </script>
+</body>
+</html>

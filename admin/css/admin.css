@@ -1,0 +1,584 @@
+/* 관리자 시스템 스타일 */
+
+/* CSS 리셋 */
+* {
+    box-sizing: border-box;
+}
+
+/* 전체 레이아웃 */
+.admin-body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    overflow-x: hidden;
+}
+
+/* 전역 스타일시트의 네비게이션 스타일 오버라이드 */
+.admin-body .nav-menu,
+.admin-body .nav-container,
+.admin-body .nav-link {
+    all: unset;
+}
+
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+    background: #F9FAFB;
+}
+
+/* 사이드바 */
+.sidebar {
+    width: 260px;
+    background: white;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-items: stretch !important;
+    position: fixed;
+    height: 100%;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+}
+
+/* 사이드바 내부 요소들이 블록 레벨로 표시되도록 보장 */
+.sidebar > * {
+    display: block;
+    width: 100%;
+}
+
+/* 외부 스타일 오버라이드 - 더 구체적인 선택자 사용 */
+.admin-body .admin-container .sidebar .sidebar-nav,
+.admin-container .sidebar .sidebar-nav {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-content: stretch !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+}
+
+/* nav-item 링크가 가로로 나열되지 않도록 강제 */
+.admin-body .admin-container .sidebar .sidebar-nav a.nav-item,
+.admin-container .sidebar .sidebar-nav a.nav-item {
+    display: flex !important;
+    width: 100% !important;
+    margin: 0 !important;
+    float: none !important;
+    text-align: left !important;
+}
+
+/* 브라우저 확장 프로그램이나 외부 스타일의 영향 제거 */
+.admin-body [class*="align-content"] {
+    all: unset !important;
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-gray);
+    text-align: center;
+    display: block;
+    width: 100%;
+}
+
+.sidebar-logo {
+    height: 40px;
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sidebar-header h3 {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin: 0;
+}
+
+/* 사이드바 네비게이션 */
+.sidebar-nav {
+    flex: 1;
+    padding: 20px 0;
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    align-content: stretch !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 0;
+}
+
+.sidebar-nav .nav-item {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: 12px 20px;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all 0.3s;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    flex-direction: row !important;
+}
+
+.nav-item:hover {
+    background: var(--bg-light);
+}
+
+.nav-item.active {
+    background: #EBF8FF;
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--primary-blue);
+}
+
+.nav-item .icon {
+    font-size: 1.25rem;
+    margin-right: 12px;
+    width: 24px;
+    text-align: center;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.nav-item span:not(.icon) {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+/* 사이드바 푸터 */
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid var(--border-gray);
+    display: block;
+    width: 100%;
+}
+
+.admin-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-name {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.logout-btn {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.logout-btn:hover {
+    color: #DC2626;
+}
+
+/* 메인 콘텐츠 */
+.main-content {
+    flex: 1;
+    margin-left: 260px;
+    padding: 30px;
+}
+
+/* 콘텐츠 헤더 */
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.content-header h1 {
+    font-size: 2rem;
+    color: var(--text-primary);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.current-date {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* 통계 카드 */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.stat-content h3 {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.stat-number {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.stat-change {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.stat-change.positive {
+    color: #10B981;
+}
+
+.stat-change.negative {
+    color: #DC2626;
+}
+
+/* 대시보드 그리드 */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* 대시보드 카드 */
+.dashboard-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid var(--border-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header h2 {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+}
+
+.view-all {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.view-all:hover {
+    text-decoration: underline;
+}
+
+/* 데이터 테이블 */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    text-align: left;
+    padding: 12px 20px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: var(--bg-light);
+}
+
+.data-table td {
+    padding: 15px 20px;
+    border-top: 1px solid var(--border-gray);
+}
+
+.data-table tbody tr:hover {
+    background: var(--bg-light);
+}
+
+/* 상태 배지 */
+.status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.status-pending {
+    background: #FEF3C7;
+    color: #92400E;
+}
+
+.status-confirmed {
+    background: #D1FAE5;
+    color: #065F46;
+}
+
+.status-completed {
+    background: #DBEAFE;
+    color: #1E40AF;
+}
+
+.status-cancelled {
+    background: #FEE2E2;
+    color: #991B1B;
+}
+
+/* 액션 버튼 */
+.action-btn {
+    padding: 6px 14px;
+    background: white;
+    border: 1px solid var(--border-gray);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.action-btn:hover {
+    background: var(--bg-light);
+    border-color: var(--primary-blue);
+    color: var(--primary-blue);
+}
+
+/* 차트 컨테이너 */
+.chart-container {
+    padding: 20px;
+    height: 300px;
+}
+
+/* 서비스 통계 */
+.service-stats {
+    padding: 20px;
+}
+
+.service-stat-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.service-stat-item:last-child {
+    margin-bottom: 0;
+}
+
+.service-info {
+    display: flex;
+    align-items: center;
+    width: 150px;
+}
+
+.service-icon {
+    font-size: 1.25rem;
+    margin-right: 10px;
+}
+
+.service-name {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.service-bar {
+    flex: 1;
+    height: 8px;
+    background: var(--bg-light);
+    border-radius: 4px;
+    margin: 0 15px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.6s ease;
+}
+
+.service-count {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+/* 할 일 목록 */
+.todo-list {
+    padding: 20px;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-gray);
+}
+
+.todo-item:last-child {
+    border-bottom: none;
+}
+
+.todo-item input[type="checkbox"] {
+    margin-right: 12px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.todo-item label {
+    flex: 1;
+    cursor: pointer;
+    color: var(--text-primary);
+}
+
+.todo-item input[type="checkbox"]:checked + label {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+}
+
+.todo-time {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.todo-item.urgent {
+    background: #FEF3C7;
+    padding: 12px;
+    margin: 0 -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* 폼 요소 */
+.period-select {
+    padding: 8px 12px;
+    border: 1px solid var(--border-gray);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background: white;
+    cursor: pointer;
+}
+
+/* 버튼 스타일 */
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+}
+
+/* 디버깅 및 강제 스타일 적용 */
+.admin-body * {
+    /* 브라우저 확장 프로그램으로 인한 스타일 오염 방지 */
+    animation: none !important;
+}
+
+/* 사이드바 관련 요소들의 display 속성 보장 */
+.sidebar,
+.sidebar-nav,
+.sidebar-header,
+.sidebar-footer {
+    display: block !important;
+}
+
+.sidebar {
+    display: flex !important;
+}
+
+.sidebar-nav {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.sidebar-nav > a {
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+/* 반응형 */
+@media (max-width: 1200px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .content-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .data-table {
+        font-size: 0.85rem;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: 10px;
+    }
+}

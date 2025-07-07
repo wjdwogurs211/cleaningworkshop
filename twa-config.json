@@ -1,0 +1,59 @@
+{
+  "packageId": "kr.co.cleaningworkshop.app",
+  "host": "cleaningworkshop.co.kr",
+  "name": "청소공작소",
+  "launcherName": "청소공작소",
+  "display": "standalone",
+  "themeColor": "#1e40af",
+  "navigationColor": "#1e40af",
+  "navigationColorDark": "#1e3a8a",
+  "navigationDividerColor": "#e5e7eb",
+  "navigationDividerColorDark": "#374151",
+  "backgroundColor": "#ffffff",
+  "enableNotifications": true,
+  "startUrl": "/",
+  "iconUrl": "https://cleaningworkshop.co.kr/images/icon-512x512.png",
+  "maskableIconUrl": "https://cleaningworkshop.co.kr/images/icon-maskable-512x512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "alias": "cleaningworkshop",
+    "path": "./signing-key.jks"
+  },
+  "appVersionName": "1.0.0",
+  "appVersionCode": 1,
+  "shortcuts": [
+    {
+      "name": "예약하기",
+      "shortName": "예약",
+      "url": "/booking.html",
+      "iconUrl": "https://cleaningworkshop.co.kr/images/icon-booking-96x96.png"
+    },
+    {
+      "name": "고객센터",
+      "shortName": "문의",
+      "url": "/contact.html",
+      "iconUrl": "https://cleaningworkshop.co.kr/images/icon-contact-96x96.png"
+    }
+  ],
+  "generatorApp": "bubblewrap",
+  "webManifestUrl": "https://cleaningworkshop.co.kr/manifest.json",
+  "fallbackType": "customtabs",
+  "features": {
+    "locationDelegation": {
+      "enabled": false
+    },
+    "playBilling": {
+      "enabled": false
+    }
+  },
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://cleaningworkshop.co.kr/",
+  "minSdkVersion": 19,
+  "orientation": "portrait",
+  "fingerprints": []
+}

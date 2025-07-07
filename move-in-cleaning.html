@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>입주청소 - 청소공작소</title>
+    <meta name="description" content="새 집처럼 깨끗한 입주청소 서비스. 전문가의 체계적인 청소로 완벽한 새출발을 도와드립니다.">
+    
+    <!-- 파비콘 -->
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 스타일 -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .service-hero {
+            background: linear-gradient(135deg, #EBF8FF 0%, #F0FDF4 50%, #FEF3C7 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .service-hero h1 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+        
+        .service-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+            align-items: center;
+        }
+        
+        .detail-content h2 {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+        
+        .detail-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        .check-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .check-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--text-primary);
+        }
+        
+        .check-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .price-table {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            margin: 40px auto;
+            max-width: 800px;
+        }
+        
+        .price-table h3 {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-gray);
+        }
+        
+        .price-row:last-child {
+            border-bottom: none;
+        }
+        
+        .price-label {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .price-value {
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+        }
+        
+        .process-area {
+            background: var(--bg-light);
+            padding: 80px 20px;
+        }
+        
+        .cleaning-areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+        
+        .area-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .area-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .area-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .area-card h4 {
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+        
+        .area-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .detail-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #DBEAFE 0%, #D1FAE5 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        
+        @media (max-width: 768px) {
+            .service-details {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .service-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="logo.svg" alt="청소공작소" class="logo">
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">홈</a></li>
+                <li><a href="move-in-cleaning.html" class="nav-link">입주청소</a></li>
+                <li><a href="ac-cleaning.html" class="nav-link">에어컨청소</a></li>
+                <li><a href="sofa-cleaning.html" class="nav-link">쇼파/침구청소</a></li>
+                <li><a href="window-cleaning.html" class="nav-link">유리창청소</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </nav>
+    </header>
+
+    <!-- 서비스 히어로 -->
+    <section class="service-hero">
+        <h1>🏠 입주청소 서비스</h1>
+        <p class="hero-subtitle">
+            새로운 시작을 위한 완벽한 청소<br>
+            청소공작소가 새 집처럼 깨끗하게 만들어 드립니다
+        </p>
+    </section>
+
+    <!-- 서비스 상세 설명 -->
+    <section class="service-details">
+        <div class="detail-content">
+            <h2>왜 청소공작소 입주청소인가요?</h2>
+            <p>
+                입주청소는 단순한 청소가 아닙니다. 새로운 공간에서의 건강하고 쾌적한 생활을 위한 
+                첫 단계입니다. 청소공작소는 체계적인 프로세스와 전문 장비로 구석구석 완벽하게 
+                청소하여 진정한 새 집의 기분을 느끼실 수 있도록 도와드립니다.
+            </p>
+            <ul class="check-list">
+                <li>전문 교육을 받은 청소 전문가 팀</li>
+                <li>친환경 인증 세제 사용으로 안전한 청소</li>
+                <li>구역별 체크리스트로 빈틈없는 작업</li>
+                <li>작업 전후 사진 제공으로 투명한 서비스</li>
+                <li>100% 고객 만족 보장 정책</li>
+            </ul>
+        </div>
+        <div class="detail-image">
+            🏠✨
+        </div>
+    </section>
+
+    <!-- 청소 구역 안내 -->
+    <section class="process-area">
+        <div class="section-header">
+            <h2 class="section-title">입주청소 구역별 상세 내용</h2>
+            <p class="section-desc">
+                모든 공간을 새 집처럼 깨끗하게<br>
+                구역별 전문 청소로 완벽을 추구합니다
+            </p>
+        </div>
+        <div class="cleaning-areas">
+            <div class="area-card">
+                <div class="area-icon">🍳</div>
+                <h4>주방</h4>
+                <p>싱크대, 가스레인지, 후드, 수납장 내외부, 타일 기름때 제거</p>
+            </div>
+            <div class="area-card">
+                <div class="area-icon">🚿</div>
+                <h4>욕실</h4>
+                <p>변기, 세면대, 욕조, 타일 곰팡이 제거, 거울 및 수전 광택</p>
+            </div>
+            <div class="area-card">
+                <div class="area-icon">🛏️</div>
+                <h4>침실</h4>
+                <p>바닥, 벽면, 창틀, 붙박이장 내외부, 몰딩 먼지 제거</p>
+            </div>
+            <div class="area-card">
+                <div class="area-icon">🛋️</div>
+                <h4>거실</h4>
+                <p>바닥 왁스 코팅, 벽면 오염 제거, 전등 및 스위치 청소</p>
+            </div>
+            <div class="area-card">
+                <div class="area-icon">🪟</div>
+                <h4>창문/베란다</h4>
+                <p>유리창 내외부, 방충망, 창틀, 베란다 바닥 및 벽면</p>
+            </div>
+            <div class="area-card">
+                <div class="area-icon">🚪</div>
+                <h4>현관</h4>
+                <p>현관문 내외부, 신발장, 바닥 광택, 벽면 스위치</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 가격 안내 -->
+    <section style="padding: 80px 20px;">
+        <div class="price-table">
+            <h3>입주청소 요금 안내</h3>
+            <div class="price-row">
+                <span class="price-label">20평 이하</span>
+                <span class="price-value">25만원~</span>
+            </div>
+            <div class="price-row">
+                <span class="price-label">21평 ~ 30평</span>
+                <span class="price-value">35만원~</span>
+            </div>
+            <div class="price-row">
+                <span class="price-label">31평 ~ 40평</span>
+                <span class="price-value">45만원~</span>
+            </div>
+            <div class="price-row">
+                <span class="price-label">41평 ~ 50평</span>
+                <span class="price-value">55만원~</span>
+            </div>
+            <div class="price-row">
+                <span class="price-label">50평 초과</span>
+                <span class="price-value">별도 견적</span>
+            </div>
+            <p style="text-align: center; margin-top: 30px; color: var(--text-secondary); font-size: 0.9rem;">
+                * 실제 요금은 오염도, 가구 유무, 층수 등에 따라 변동될 수 있습니다<br>
+                * 정확한 견적은 방문 상담을 통해 안내드립니다
+            </p>
+        </div>
+    </section>
+
+    <!-- 프로세스 -->
+    <section class="features">
+        <div class="section-header">
+            <h2 class="section-title">입주청소 진행 과정</h2>
+            <p class="section-desc">체계적인 5단계 프로세스로 완벽한 입주청소를 제공합니다</p>
+        </div>
+        <div class="process-timeline" style="max-width: 1000px; margin: 40px auto;">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>사전 점검</h3>
+                <p>현장 상태 확인 및 청소 계획 수립</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>기초 청소</h3>
+                <p>먼지 제거 및 기본 오염 처리</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>세부 청소</h3>
+                <p>구역별 전문 장비 투입 청소</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>마무리 작업</h3>
+                <p>광택 작업 및 최종 점검</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">5</div>
+                <h3>인수인계</h3>
+                <p>고객 확인 및 만족도 체크</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2 class="cta-title">새로운 시작, 깨끗함과 함께</h2>
+        <p class="cta-desc">
+            전문가의 손길로 완성되는 완벽한 입주청소<br>
+            지금 바로 상담 받아보세요
+        </p>
+        <div class="hero-buttons">
+            <a href="tel:1588-0000" class="btn">📞 전화 상담</a>
+            <a href="#quote" class="btn" style="background: var(--accent-green);">무료 견적 신청</a>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="logo.svg" alt="청소공작소" style="height: 50px; margin-bottom: 20px;">
+                <p>청소의 과학, 깨끗함의 예술</p>
+            </div>
+            <div class="footer-section">
+                <h3>서비스</h3>
+                <p><a href="move-in-cleaning.html">입주청소</a></p>
+                <p><a href="ac-cleaning.html">에어컨청소</a></p>
+                <p><a href="sofa-cleaning.html">쇼파/침구청소</a></p>
+                <p><a href="window-cleaning.html">유리창청소</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>고객센터</h3>
+                <p>📞 1588-0000</p>
+                <p>평일 09:00 - 18:00</p>
+            </div>
+            <div class="footer-section">
+                <h3>회사정보</h3>
+                <p>청소공작소</p>
+                <p>사업자등록번호: 123-45-67890</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 청소공작소. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 모바일 메뉴
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // 애니메이션
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.area-card, .process-step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
