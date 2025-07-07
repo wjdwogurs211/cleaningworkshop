@@ -1,26 +1,12 @@
 {
-  "buildCommand": "echo 'No build required'",
-  "outputDirectory": ".",
-  "framework": null,
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/cleaning_workshop/$1"
-    },
     {
       "source": "/",
       "destination": "/cleaning_workshop/index.html"
-    }
-  ],
-  "headers": [
+    },
     {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600"
-        }
-      ]
+      "source": "/:path*",
+      "destination": "/cleaning_workshop/:path*"
     }
   ]
 }
