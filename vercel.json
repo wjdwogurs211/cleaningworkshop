@@ -2,11 +2,7 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/cleaning_workshop/index.html"
-    },
-    {
-      "source": "/:path*",
-      "destination": "/cleaning_workshop/:path*"
+      "destination": "/index.html"
     }
   ]
 }
