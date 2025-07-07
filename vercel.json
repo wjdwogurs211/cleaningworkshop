@@ -1,8 +1,12 @@
 {
   "rewrites": [
     {
+      "source": "/(.*)",
+      "destination": "/cleaning_workshop/$1"
+    },
+    {
       "source": "/",
-      "destination": "/index.html"
+      "destination": "/cleaning_workshop/index.html"
     }
   ]
 }
