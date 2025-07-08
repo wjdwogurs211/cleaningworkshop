@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const dayOfWeek = selectedDate.getDay();
             
             if (dayOfWeek === 0 || dayOfWeek === 6) {
-                alert('주말 서비스는 전화 문의(1588-0000) 부탁드립니다.');
+                alert('주말 서비스는 전화 문의(010-2621-8208) 부탁드립니다.');
                 this.value = '';
             }
         });

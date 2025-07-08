@@ -14,7 +14,7 @@ const notificationTemplates = {
 💰 예상금액: {{금액}}원
 
 예약번호: {{예약번호}}
-문의: 1588-0000`,
+문의: 010-2621-8208`,
         active: true
     },
     
@@ -29,7 +29,7 @@ const notificationTemplates = {
 👷 담당: {{담당자명}} 매니저
 
 준비사항은 별도 안내드리겠습니다.
-문의: 1588-0000`,
+문의: 010-2621-8208`,
         active: true
     },
     
@@ -94,7 +94,7 @@ const notificationTemplates = {
 감사합니다.
 
 청소공작소 드림
-문의: 1588-0000`,
+문의: 010-2621-8208`,
         active: true
     }
 };
