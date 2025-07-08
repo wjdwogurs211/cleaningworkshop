@@ -452,27 +452,27 @@ async function submitBooking() {
             });
             
             if (!response.ok) {
-                throw new Error('예약 처리 중 오류가 발생했습니다.');
+                const errorData = await response.json();
+                console.error('예약 API 오류:', errorData);
+                throw new Error(errorData.error || '예약 처리 중 오류가 발생했습니다.');
             }
             
             const result = await response.json();
             bookingData.bookingNumber = result.data.bookingNumber;
+            
+            // 완료 페이지로 이동
+            window.location.href = `booking-complete.html?booking=${bookingData.bookingNumber}`;
+        } else {
+            // API가 없는 경우 임시 처리
+            const bookingNumber = 'CW' + Date.now().toString().slice(-8);
+            bookingData.bookingNumber = bookingNumber;
+            
+            // 로컬 스토리지에 저장
+            localStorage.setItem('lastBooking', JSON.stringify(bookingData));
+            
+            // 완료 페이지로 이동
+            window.location.href = `booking-complete.html?booking=${bookingNumber}`;
         }
-        
-        // 임시 처리 (API 연동 전)
-        const bookingNumber = 'CW' + Date.now().toString().slice(-8);
-        bookingData.bookingNumber = bookingNumber;
-        
-        // 로컬 스토리지에 저장
-        localStorage.setItem('lastBooking', JSON.stringify(bookingData));
-        
-        // 알림 발송
-        if (window.sendBookingNotification) {
-            window.sendBookingNotification(bookingData);
-        }
-        
-        // 완료 페이지로 이동
-        window.location.href = `booking-complete.html?booking=${bookingNumber}`;
         
     } catch (error) {
         console.error('예약 오류:', error);
