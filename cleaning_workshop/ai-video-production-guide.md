@@ -115,7 +115,7 @@ Text: "우와! 새 집 같아요!"
 Create 5-second video:
 Animated 청소공작소 logo with shine effect,
 blue gradient background,
-phone number 1588-4954 appearing,
+phone number 010-2621-8208 appearing,
 "첫 이용 30% 할인" text animation,
 website URL sliding in
 Upbeat ending with sparkle effects

@@ -180,7 +180,7 @@ TEAM: All in matching blue uniforms with logos
 > "청소공작소 - 청소의 과학, 깨끗함의 예술"
 
 **자막**: 
-> 첫 이용 30% 할인 | 1588-4954
+> 첫 이용 30% 할인 | 010-2621-8208
 
 **Veo 프롬프트**:
 ```
@@ -194,7 +194,7 @@ ACTION:
 4. Logo animation with tagline (1s)
 EMOTION: Satisfaction, trust, professional pride
 ENDING: "청소공작소 - 청소의 과학, 깨끗함의 예술" logo animation
-CALL-TO-ACTION: "첫 이용 30% 할인 | 1588-4954" text overlay
+CALL-TO-ACTION: "첫 이용 30% 할인 | 010-2621-8208" text overlay
 FINAL FRAME: Website URL www.cleaningworkshop.co.kr
 ```
 

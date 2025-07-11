@@ -180,7 +180,7 @@ EMOTION: Joy, relief, family warmth
 > "청소공작소 - 엄마의 마음, 과학의 손길"
 
 **자막**: 
-> 첫 이용 30% 할인 | 1588-4954
+> 첫 이용 30% 할인 | 010-2621-8208
 
 **Veo 프롬프트**:
 ```
@@ -191,7 +191,7 @@ SCENES:
 2. Mothers smiling with relief (1s)
 3. 청소공작소 logo animation (2s)
 ENDING: Logo with tagline "엄마의 마음, 과학의 손길"
-CALL-TO-ACTION: "첫 이용 30% 할인 | 1588-4954"
+CALL-TO-ACTION: "첫 이용 30% 할인 | 010-2621-8208"
 STYLE: Warm, emotional, trust-building
 FINAL FRAME: Website www.cleaningworkshop.co.kr
 ```
